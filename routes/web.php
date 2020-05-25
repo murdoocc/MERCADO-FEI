@@ -24,3 +24,17 @@ Route::get('/home', 'HomeController@index')->name('inicioemprendedor');
 Route::get('inicioemprendedor', function () {
     return view('inicioemprendedor');
 });
+
+Route::get('store_image', 'StoreImageController@index');
+
+Route::post('store_image/insert_image', 'StoreImageController@insert_image');
+
+Route::resource('categories','CategoryController');
+
+//Route::get('store_image/fetch_image/{id}', 'StoreImageController@fetch_image');
+
+
+
+
+
+

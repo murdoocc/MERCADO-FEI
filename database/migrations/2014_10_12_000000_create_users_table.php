@@ -14,22 +14,22 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('matricula');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('foto',30);
+            $table->bigIncrements('id');            
             $table->string('alias',18);
-            $table->string('numero_tel',15);
+            $table->string('password',30);
+            $table->string('name',30);
+            $table->string('apellido_p',30);
+            $table->string('apellido_m',30);
+            $table->string('email',50)->unique();
+            $table->string('number_tel',15);
             $table->string('carrera',50);
-            $table->string('ubicacion',20)->nullable();
-            $table->string('horario',20)->nullable();
-            $table->string('estatus',10)->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->boolean('estatus');
+            $table->timestamps();                      
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';
         });
+        DB::statement("ALTER TABLE users ADD user_image LONGBLOB");
     }
 
     /**
