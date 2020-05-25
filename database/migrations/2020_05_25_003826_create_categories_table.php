@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('categoria',20);
             $table->string('sub_uno',20)->unique();
-            $table->string('sub_dos',20)->default("");
+            $table->string('sub_dos',20)->default("Ninguna...")->nullable();
             $table->timestamps();
         });
     }

@@ -9,18 +9,18 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li><a href="">{{ Auth::user()->alias }}</a></li>
-          <li><a href="#about">Mis datos</a></li>
-          <li><a href="#menu">Mis Categorias</a></li>
+          <li><a href="#about">Mis datos</a></li>          
           <li><a href="#specials">Sugerencias</a></li>
           <li><a href="#events">Foro Productos</a></li>
           <li><a href="#chefs">Emprendedores</a></li>
+          <li><a href="{{ route('categories.index') }}">Categorias</a></li>
           <li><a href="#gallery">Mis Productos</a></li>
           <!--<li><a href="#contact">Contact</a></li>-->
           <li class="book-a-table text-center" ><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Cerrar sesión</a></li>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
-                                    </form>                                       
+          </form>                                       
         </ul>
       </nav><!-- .nav-menu -->
 @endsection
@@ -61,6 +61,12 @@
               <p>
                 Ubicación: {{ Auth::user()->ubicacion }}
               </p>
+              <form action="{{ route('users.destroy', Auth::user()->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Borrar</button>
+            </form>
+
             </div>
           </div>
 

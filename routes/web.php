@@ -31,6 +31,10 @@ Route::post('store_image/insert_image', 'StoreImageController@insert_image');
 
 Route::resource('categories','CategoryController');
 
+Route::resource('products','ProductController');
+
+Route::resource('users','UserController');
+
 //Route::get('store_image/fetch_image/{id}', 'StoreImageController@fetch_image');
 
 

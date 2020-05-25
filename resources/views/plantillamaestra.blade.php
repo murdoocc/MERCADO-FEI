@@ -515,6 +515,8 @@
       </div>
     </section><!-- End Book A Table Section -->
 
+    @yield('gallery_products');
+
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
       <div class="container-fluid">

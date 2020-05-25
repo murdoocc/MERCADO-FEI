@@ -77,14 +77,16 @@ class RegisterController extends Controller
         Response::make($image->encode('jpeg'));
 
         return User::create([
-            'matricula' => $data['matricula'],
             'name' => $data['name'],
+            'apellido_p' => $data['apellido_p'],
+            'apellido_m' => $data['apellido_m'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'alias' => $data['alias'],
-            'numero_tel' => $data['numero_tel'],
+            'number_tel' => $data['number_tel'],
             'carrera' => $data['carrera'],
             'user_image' => $image,
+            //'estatus' => $data['estatus'],
         ]);
     }
 }
