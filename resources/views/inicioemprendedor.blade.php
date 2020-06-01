@@ -34,7 +34,7 @@
                 imagejpeg($image, null, 80); 
                 $data = ob_get_contents(); 
                 ob_end_clean(); 
-                echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="500" height="400"/>';   
+                echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="500" height="500" style= "border-radius: 50%;"/>';   
               @endphp  
             <!--<a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>-->
           </div>
