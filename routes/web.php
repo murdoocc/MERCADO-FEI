@@ -17,7 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', 'UserController@destroy');
+
 Auth::routes();
+
+Route::view('/welcome', 'welcome');
 
 Route::get('/home', 'HomeController@index')->name('inicioemprendedor');
 
