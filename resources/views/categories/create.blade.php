@@ -25,7 +25,7 @@
     </ul>
 </div>
 
-@endif
+@endif  
 
 <form action="{{ route('categories.store') }}" method="POST">
 

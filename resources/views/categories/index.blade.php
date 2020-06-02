@@ -6,6 +6,9 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
+            <a class="btn btn-primary" href="{{ route('inicioemprendedor') }}"> Volver</a>
+        </div>
+        <div class="pull-center">
             <h2>Categorias existentes</h2>
         </div>
         <div class="pull-right">

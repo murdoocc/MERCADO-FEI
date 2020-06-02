@@ -3,7 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
+
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Response;
+use Image;
+//use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -12,10 +19,17 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index3()
     {
         $products = Product::latest()->paginate(5);
         return view('products.index',compact('products'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function index()
+    {
+        $categories = Category::latest()->paginate(5);
+        return view('products.index',compact('categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -47,30 +61,53 @@ class ProductController extends Controller
         'user_image' => $image,
      */ 
 
-    public function store(Request $request)
+    /*protected function validator(array $data)
     {
-        $image_file = $data['product_image'];
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'user_image' => 'required|image',
+            
+            //'user_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:10000|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
+        ]);
+    }*/
+
+    public function store(Request $request)
+    {        
+        //$image_file = $request->input('product_image');
+        $image_file = $request->file('product_image');
         $image = Image::make($image_file);
         Response::make($image->encode('jpeg'));
         
+        $cate = $request->input('category');
+        $tok = strtok($cate, " ");
 
         $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
-            'user_id' => 'requiered',
-            'category_id' => 'requiered',
-            'nombre' => 'requiered',
-            'precio' => 'requiered',
-            'detalle' => 'requiered',
-            'estado' => 'requiered',
-            'existencia' => 'requiered',
-            'user_image' => $image,
+            'user_id' => 'required',
+            'category_id' => 'required',
+            'nombre' => 'required',
+            'precio' => 'required',
+            'detalle' => 'required',
+            'estado' => 'required',
+            'existencia' => 'required',
+            'product_image' => 'required',
         ]);  
 
-        Product::create($request->all());   
+        Product::create(
+        [
+            'user_id' => $request->input('user_id'),
+            'category_id' => 1,
+            'nombre' => $request->input('nombre'),
+            'precio' => $request->input('precio'),
+            'detalle' => $request->input('detalle'),
+            'estado' => $request->input('estado'),
+            'existencia' => $request->input('existencia'),
+            'product_image' => $image,
+        ]);   
 
         return redirect()->route('products.index')
-                        ->with('success','Product created successfully.');
+                        ->with('success','Product created successfully.$cate');
     }
 
     /**
@@ -104,7 +141,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $image_file = $data['product_image'];
+        $image_file = $request['product_image'];
         $image = Image::make($image_file);
         Response::make($image->encode('jpeg'));
         
@@ -119,7 +156,7 @@ class ProductController extends Controller
             'detalle' => 'requiered',
             'estado' => 'requiered',
             'existencia' => 'requiered',
-            'user_image' => $image,
+            'product_image' => $image,
         ]);         
 
         $product->update($request->all());  
