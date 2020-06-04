@@ -28,7 +28,7 @@ class UserController extends Controller
             'password' => 'required', 'string', 'min:8', 'confirmed',
             'user_image' => 'required|image',
         ]);
-        
+        //user controller
         $image_file = $request['user_image'];
         $image = Image::make($image_file);
         Response::make($image->encode('jpeg'));
