@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+//use App\Http\Controllers\ProductController;
+//use ProductController;
+use App\Product;
 
 class HomeController extends Controller
 {
@@ -14,6 +17,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        //$products = (new ProductController)->index();
     }
 
     /**
@@ -23,6 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('inicioemprendedor');
+        $products = Product::latest()->paginate(10);
+        return view('inicioemprendedor',compact('products'))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }

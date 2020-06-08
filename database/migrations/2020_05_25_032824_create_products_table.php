@@ -18,17 +18,17 @@ class CreateProductsTable extends Migration
             $table->unsignedbigInteger('user_id');            
             $table->unsignedbigInteger('category_id');            
             $table->string('nombre',50)->unique();
-            $table->decimal('precio',12,2)->default(0);
+            $table->decimal('precio',12,2)->default(0)->nullable();
             $table->string('detalle')->nullable();            
-            $table->boolean('estado');
-            $table->Integer('existencia')->unsigned()->default(0);
+            $table->boolean('estado')->nullable();
+            $table->Integer('existencia')->unsigned()->default(0)->nullable();
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
 
         });
-        DB::statement("ALTER TABLE products ADD product_image LONGBLOB");
+        DB::statement("ALTER TABLE products ADD product_image LONGBLOB")->nullable();
     }
 
     /**

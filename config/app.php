@@ -39,8 +39,11 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', true),
 
+    	
+ 
+    'Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider',
     /*
     |--------------------------------------------------------------------------
     | Application URL

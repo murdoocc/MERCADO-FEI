@@ -3,23 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Image;
+use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -45,7 +39,8 @@ class UserController extends Controller
         $user->user_image = $image;
         $user->estatus = $request->estado; 
         $user->save();
-        return redirect('inicioemprendedor');
+        return redirect()->route('inicioemprendedor');
+
     }
     /**
      * Remove the specified resource from storage.
@@ -56,6 +51,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect('welcome');
+        return redirect()->route('welcome')
+                        ->with('success','User deleted successfully');
     }
 }
