@@ -32,7 +32,7 @@ class UserController extends Controller
         $user->apellido_p = $request->apellido_p;
         $user->apellido_m = $request->apellido_m;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->alias = $request->alias;
         $user->number_tel = $request->number_tel;
         $user->carrera = $request->carrera;
