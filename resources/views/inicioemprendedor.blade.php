@@ -210,83 +210,53 @@
         <div class="container-fluid">
 
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('products.index') }}"> Create New Product</a>
+                <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
             </div>
 
             <div class="section-title">
-            <h2>Some photos from <span>Our Restaurant</span></h2>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+            <h2> Tus <span> Productos</span></h2>
+            <p>Gestiona todos tus productos en este apartado</p>
             </div>
 
             <div class="row no-gutters">
 
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-1.jpg" class="venobox" data-gall="gallery-item">
-                    <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
+            <div class='card-deck'>
+            
+            
+            @foreach ($products as $product)
+                <div class="col-lg-4 col-md-2">
+                    <div class='card'>
+                        <div class='gallery-item'>
+                            @php 
+                            $image = imagecreatefromstring($product->product_image); 
+                            ob_start(); 
+                            imagejpeg($image, null, 80); 
+                            $data = ob_get_contents(); 
+                            ob_end_clean(); 
+                            echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="380" height="300" style="border-radius: 10%;" />';   
+                            @endphp 
+                        </div>      
+                        <div class='card-body'>
+                            <h5 class='card-title'>{{ $product->nombre }} </h5>
+                            <h6 class='card-subtitle mb-2 text-muted'> {{ $product->precio }}</h6>
+                            <p class='card-text'> {{ $product->detalle }} </p>
+                        </div>      
+                        <div class='card-footer'>
+                            <form action="{{ route('products.destroy',$product->id) }}" method="POST">
+                            <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>                
+            @endforeach
+                                
+            </div>                   
             </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-2.jpg" class="venobox" data-gall="gallery-item">
-                    <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-3.jpg" class="venobox" data-gall="gallery-item">
-                    <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-4.jpg" class="venobox" data-gall="gallery-item">
-                    <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-5.jpg" class="venobox" data-gall="gallery-item">
-                    <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-6.jpg" class="venobox" data-gall="gallery-item">
-                    <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-7.jpg" class="venobox" data-gall="gallery-item">
-                    <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-8.jpg" class="venobox" data-gall="gallery-item">
-                    <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            </div>
-
         </div>
 
 
 @endsection
+

@@ -19,17 +19,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index3()
+   
+    public function index()
     {
         $products = Product::latest()->paginate(5);
         return view('products.index',compact('products'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-
-    public function index()
-    {
-        $categories = Category::latest()->paginate(5);
-        return view('products.index',compact('categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -40,7 +34,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories = Category::latest()->paginate(10);            
+        return view('products.create', compact('categories'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -75,17 +70,18 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {        
-        //$image_file = $request->input('product_image');
+        $image_file = $request->input('product_image');
         $image_file = $request->file('product_image');
         $image = Image::make($image_file);
         Response::make($image->encode('jpeg'));
+
+        
         
         $cate = $request->input('category');
         $tok = strtok($cate, " ");
 
         $request->validate([
-            'user_id' => 'required',
-            'category_id' => 'required',
+            'user_id' => 'required',            
             'nombre' => 'required',
             'precio' => 'required',
             'detalle' => 'required',
@@ -97,7 +93,7 @@ class ProductController extends Controller
         Product::create(
         [
             'user_id' => $request->input('user_id'),
-            'category_id' => 1,
+            'category_id' => $tok,
             'nombre' => $request->input('nombre'),
             'precio' => $request->input('precio'),
             'detalle' => $request->input('detalle'),
@@ -106,8 +102,8 @@ class ProductController extends Controller
             'product_image' => $image,
         ]);   
 
-        return redirect()->route('products.index')
-                        ->with('success','Product created successfully.$cate');
+        return redirect()->route('inicioemprendedor')
+                        ->with('success','Product created successfully');
     }
 
     /**
@@ -141,27 +137,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $image_file = $request['product_image'];
+        /*$image_file = $request['product_image'];
         $image = Image::make($image_file);
-        Response::make($image->encode('jpeg'));
+        Response::make($image->encode('jpeg'));*/
         
 
         $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
-            'user_id' => 'requiered',
-            'category_id' => 'requiered',
-            'nombre' => 'requiered',
-            'precio' => 'requiered',
-            'detalle' => 'requiered',
-            'estado' => 'requiered',
-            'existencia' => 'requiered',
-            'product_image' => $image,
+            //'user_id' => 'requiered',
+            //'category_id' => 'requiered',
+            //'nombre' => 'requiered',
+            'precio' => 'required',
+            'detalle' => 'required',
+            'estado' => 'required',
+            'existencia' => 'required',
+            //'product_image' => $image,
         ]);         
 
         $product->update($request->all());  
 
-        return redirect()->route('products.index')
+        return redirect()->route('inicioemprendedor')
                         ->with('success','Product updated successfully');
     }
 
@@ -174,7 +168,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('products.index')
+        return redirect()->route('inicioemprendedor')
                         ->with('success','Product deleted successfully');
     }
 }

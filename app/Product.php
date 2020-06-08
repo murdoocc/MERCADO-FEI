@@ -8,7 +8,12 @@ class Product extends Model
 {
     protected $fillable = [
 
-        'user_id', 'category_id', 'nombre', 'precio', 'detalle', 'estado', 'existencia',
+        'user_id', 'category_id', 'nombre', 'precio', 'detalle', 'estado', 'existencia', 'product_image',
 
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+        // 2) Cada Producto creado pertenece A UNO y SOLO un USUARIO
+    }
 }

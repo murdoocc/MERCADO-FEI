@@ -35,6 +35,8 @@ Route::resource('products','ProductController');
 
 Route::resource('users','UserController');
 
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
 //Route::get('store_image/fetch_image/{id}', 'StoreImageController@fetch_image');
 
 
