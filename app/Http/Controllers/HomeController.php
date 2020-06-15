@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 //use App\Http\Controllers\ProductController;
 //use ProductController;
 use App\Product;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,11 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::latest()->paginate(10);
-        return view('inicioemprendedor',compact('products'))
+        $users = User::latest()->paginate(5);
+        return view('inicioemprendedor',compact('products', 'users'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
+    
+    
 }

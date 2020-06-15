@@ -655,7 +655,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Our Proffesional <span>Chefs</span></h2>
+          <h2>Emprendedores <span>Profesionales</span></h2>
           <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
         </div>
 

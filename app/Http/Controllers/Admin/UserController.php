@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+   
+    public function index()
+    {
+        $users = User::latest()->paginate(5);
+        return view('inicioemprendedor',compact('users'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
 
     public function update(Request $request, $id)
     {

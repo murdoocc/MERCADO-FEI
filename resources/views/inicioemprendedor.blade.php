@@ -260,3 +260,42 @@
 
 @endsection
 
+@section('gallery_users')
+<div class="container">
+
+        <div class="section-title">
+          <h2>Nuestros profesionales<span>Emprendedores</span></h2>
+          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        </div>
+
+        <div class="row">
+          @foreach ($users as $user)
+          <div class="col-lg-4 col-md-2">
+                    <div class='card'>
+                        <div class='gallery-item'>
+                            @php 
+                            $image = imagecreatefromstring($user->user_image); 
+                            ob_start(); 
+                            imagejpeg($image, null, 80); 
+                            $data = ob_get_contents(); 
+                            ob_end_clean(); 
+                            echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="350" height="400" style="border-radius: 10%;" />';   
+                            @endphp 
+                        </div>      
+                        <div class='card-body'>
+                            <h5 class='card-title'>{{ $user->name }} </h5>
+                            <h6 class='card-subtitle mb-2 text-muted'> {{ $user->number_tel }}</h6>
+                            <p class='card-text'> {{ $user->email }} </p>
+                        </div>      
+                    </div>
+                </div>                
+          @endforeach
+
+        </div>
+
+      </div>
+@endsection
+
+
+
+
