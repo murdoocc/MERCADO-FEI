@@ -652,66 +652,39 @@
 
     <!-- ======= Chefs Section ======= -->
     <section id="chefs" class="chefs">
-      <div class="container">
+    <div class="container">
 
-        <div class="section-title">
-          <h2>Emprendedores <span>Profesionales</span></h2>
-          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-        </div>
+<div class="section-title">
+  <h2>Nuestros profesionales<span>Emprendedores</span></h2>
+  <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+</div>
 
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member">
-              <div class="pic"><img src="assets/img/chefs/chefs-1.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Master Chef</span>
-                <div class="social">
-                  <a href=""><i class="icofont-twitter"></i></a>
-                  <a href=""><i class="icofont-facebook"></i></a>
-                  <a href=""><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
-                </div>
-              </div>
+<div class="row">
+  @foreach ($users as $user)
+  <div class="col-lg-4 col-md-2">
+            <div class='card'>
+                <div class='gallery-item'>
+                    @php 
+                    $image = imagecreatefromstring($user->user_image); 
+                    ob_start(); 
+                    imagejpeg($image, null, 80); 
+                    $data = ob_get_contents(); 
+                    ob_end_clean(); 
+                    echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="350" height="400" style="border-radius: 10%;" />';   
+                    @endphp 
+                </div>      
+                <div class='card-body'>
+                    <h5 class='card-title'>{{ $user->name }} </h5>
+                    <h6 class='card-subtitle mb-2 text-muted'> {{ $user->number_tel }}</h6>
+                    <p class='card-text'> {{ $user->email }} </p>
+                </div>      
             </div>
-          </div>
+        </div>                
+  @endforeach
 
-          <div class="col-lg-4 col-md-6">
-            <div class="member">
-              <div class="pic"><img src="assets/img/chefs/chefs-2.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Patissier</span>
-                <div class="social">
-                  <a href=""><i class="icofont-twitter"></i></a>
-                  <a href=""><i class="icofont-facebook"></i></a>
-                  <a href=""><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+</div>
 
-          <div class="col-lg-4 col-md-6">
-            <div class="member">
-              <div class="pic"><img src="assets/img/chefs/chefs-3.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>Cook</span>
-                <div class="social">
-                  <a href=""><i class="icofont-twitter"></i></a>
-                  <a href=""><i class="icofont-facebook"></i></a>
-                  <a href=""><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+</div>
     </section><!-- End Chefs Section -->
 
     <!-- ======= Testimonials Section ======= -->

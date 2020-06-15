@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\User;
 
-class HomeController extends Controller
+class HomeController2 extends Controller
 {
     /**
      * Create a new controller instance.
@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
         $products = Product::latest()->paginate(10);
         $users = User::latest()->paginate(5);
-        return view('inicioemprendedor',compact('products', 'users'))
+        return view('welcome',compact('products', 'users'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }
