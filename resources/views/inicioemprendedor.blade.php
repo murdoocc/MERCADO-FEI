@@ -7,9 +7,8 @@
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="">{{ Auth::user()->alias }}</a></li>
-          <li><a href="#about">Mis datos</a></li>          
+        <ul>          
+          <li><a href="#about">{{ Auth::user()->alias }}</a></li>          
           <li><a href="#specials">Sugerencias</a></li>
           <li><a href="#events">Foro Productos</a></li>
           <li><a href="#chefs">Emprendedores</a></li>
@@ -224,6 +223,7 @@
             
             
             @foreach ($products as $product)
+                @if(auth()->user()->id == $product->user_id)
                 <div class="col-lg-4 col-md-2">
                     <div class='card'>
                         <div class='gallery-item'>
@@ -251,6 +251,7 @@
                         </div>
                     </div>
                 </div>                
+                @endif                
             @endforeach
                                 
             </div>                   
@@ -264,32 +265,34 @@
 <div class="container">
 
         <div class="section-title">
-          <h2>Nuestros profesionales<span>Emprendedores</span></h2>
-          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+          <h2>Tus Compañeros <span> Emprendedores</span></h2>
+          <p>Conoce un poco de ellos y algunos medios de contacto.</p>
         </div>
 
         <div class="row">
-          @foreach ($users as $user)
-          <div class="col-lg-4 col-md-2">
-                    <div class='card'>
-                        <div class='gallery-item'>
-                            @php 
-                            $image = imagecreatefromstring($user->user_image); 
-                            ob_start(); 
-                            imagejpeg($image, null, 80); 
-                            $data = ob_get_contents(); 
-                            ob_end_clean(); 
-                            echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="350" height="400" style="border-radius: 10%;" />';   
-                            @endphp 
-                        </div>      
-                        <div class='card-body'>
-                            <h5 class='card-title'>{{ $user->name }} </h5>
-                            <h6 class='card-subtitle mb-2 text-muted'> {{ $user->number_tel }}</h6>
-                            <p class='card-text'> {{ $user->email }} </p>
-                        </div>      
-                    </div>
-                </div>                
-          @endforeach
+        @foreach ($users as $user)
+
+            <div class="col-lg-4 col-md-6">
+                <div class='member'>
+                    <div class='pic'>
+                        @php 
+                        $image = imagecreatefromstring($user->user_image); 
+                        ob_start(); 
+                        imagejpeg($image, null, 80); 
+                        $data = ob_get_contents(); 
+                        ob_end_clean(); 
+                        echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="310" height="300" style="border-radius: 15%;" />';   
+                        @endphp 
+                    </div>      
+                    <div class='member-info'>
+                        <h4>{{ $user->name }} </h4>
+                        <h6 class='card-subtitle mb-2 text-muted'> {{ $user->number_tel }}</h6>
+                        <p class='card-text'> {{ $user->email }} </p>
+                    </div>      
+                </div>
+            </div>                
+        @endforeach
+
 
         </div>
 
