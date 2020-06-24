@@ -39,6 +39,13 @@
                 {{ $category->sub_dos }}
             </div>
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Descripcion:</strong>
+                {{ $category->descripcion }}
+            </div>
+        </div>
     </div>
 
 @endsection

@@ -51,6 +51,13 @@
                 </div>
             </div>
 
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Descripcion:</strong>
+                    <textarea name="descripcion" rows="10" cols="40" maxlength="200" class="form-control">{{ $category->descripcion }}</textarea>                    
+                </div>
+            </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">Actualizar</button>
             </div>

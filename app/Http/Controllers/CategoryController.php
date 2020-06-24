@@ -44,6 +44,7 @@ class CategoryController extends Controller
             'categoria' => 'required',
             'sub_uno' => 'required',
             'sub_dos',
+            'descripcion' => 'required',
         ]); 
 
         Category::create($request->all());   
@@ -86,6 +87,7 @@ class CategoryController extends Controller
             'categoria' => 'required',
             'sub_uno' => 'required',
             'sub_dos',
+            'descripcion' => 'required',
         ]);  
 
         $category->update($request->all());  

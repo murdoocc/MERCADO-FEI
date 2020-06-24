@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 //use ProductController;
 use App\Product;
 use App\User;
+use App\Category;
 
 class HomeController2 extends Controller
 {
@@ -28,9 +29,10 @@ class HomeController2 extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(10);
-        $users = User::latest()->paginate(5);
-        return view('welcome',compact('products', 'users'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        $products = Product::latest()->paginate(100);
+        $users = User::latest()->paginate(50);
+        $categories = Category::latest()->paginate(100);
+        return view('welcome',compact('products', 'users','categories'))
+        ->with('i', (request()->input('page', 1) - 1) * 50);
     }
 }

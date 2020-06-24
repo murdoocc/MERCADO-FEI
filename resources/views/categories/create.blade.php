@@ -53,6 +53,13 @@
         </div>
     </div>
 
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Descripción:</strong>
+            <textarea class="form-control" name="descripcion" rows="10" cols="40" maxlength="200" placeholder="Describe el significado de esta categoria..."></textarea>                      
+        </div>
+    </div>
+
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Guardar</button>
     </div>

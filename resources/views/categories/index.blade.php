@@ -12,7 +12,7 @@
             <h2>Categorias existentes</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('categories.create') }}"> Create New Product</a>
+            <a class="btn btn-success" href="{{ route('categories.create') }}"> Crear nueva categoria</a>
         </div>
     </div>
 </div>
