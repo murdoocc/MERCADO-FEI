@@ -504,9 +504,13 @@
      <section id="events" class="events">
       <div class="container">
 
+      <div class="pull-right">
+            <a class="btn btn-outline-warning" href="{{ route('categories.create') }}"> Entra al foro</a>
+        </div>
+
         <div class="section-title">
           <h2>Bienvenido al <span>apartado </span> "FORO"</h2>
-        </div>
+        </div>               
 
         <div class="owl-carousel events-carousel">
 
@@ -522,13 +526,12 @@
               <p class="font-italic">
                 El proposito del foro es brindar un espacio para que mediante el apoyo de todos podamos tener una variedad más enriquecida de productos
               </p>
-              <ul>
-                <li><i class="icofont-check-circled"></i> Comparte tu idea de un producto.</li>
+              <ul>                
                 <li><i class="icofont-check-circled"></i> Da tu voto para los productos propuestos.</li>
                 <li><i class="icofont-check-circled"></i> Visualiza como van las votaciones.</li>
               </ul>
               <p>
-                No olvides que tienes la libertad de proponer cualquier producto, considera que confiamos en tu buen criterio.
+                Recuerda que estamos para brindar un sistema de calidad, cualquier inquietud por favor de ir al apartado de contacto
               </p>
             </div>
           </div>
@@ -538,23 +541,25 @@
               <img src="assets/img/about.jpg" class="img-fluid" alt="">
             </div>
             <div class="col-lg-6 pt-4 pt-lg-0 content">
-              <h3>Categorias actuales</h3>
+              <h3>Productos actuales</h3>
               <div class="price">
-                <p><span>{{count($categories)}}</span></p>
+                <p><span>Contamos con un total de {{count($products)}}</span></p>
               </div>
               <p class="font-italic">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua.
+                Los productos que ofrecen los emprendedores son de muy buena calidad, garantizan satisfacción a cada uno de sus compradores.
+              </p>
+              <p class="font-italic">
+                Conoce algunos de nuestros productos
               </p>
               <ul>
-                <li><i class="icofont-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                <li><i class="icofont-check-circled"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                <li><i class="icofont-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              </ul>
-              <p>
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur
-              </p>
+              @php
+                for($i = 0; $i < 5; $i++){
+                  $cant = count($products) - 1;
+                  $rand = rand(0, $cant);
+                  echo "<li><i class='icofont-check-circled'></i>". $i.".-". $products[$rand]->nombre .".</li>";
+                }   
+              @endphp                
+              </ul>     
             </div>
           </div>
         </div>

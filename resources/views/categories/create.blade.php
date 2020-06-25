@@ -35,21 +35,21 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Categoria principal:</strong>
-            <input type="text" name="categoria" class="form-control" placeholder="Nombre de la categoria">
+            <input type="text" name="categoria" class="form-control" placeholder="Nombre para identificar la categoria">
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Sub categoria 1:</strong>            
-            <input type="text" name="sub_uno" class="form-control" placeholder="Nombre de la sub cateogria">
+            <input type="text" name="sub_uno" class="form-control" placeholder="Nombre de la sub cateogria para tener un referencia más">
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Sub categoria 2:</strong>            
-            <input type="text" name="sub_dos" class="form-control" placeholder="Opcional...">
+            <input type="text" name="sub_dos" class="form-control" placeholder="Nombre para especificar aún más la categoria">
         </div>
     </div>
 

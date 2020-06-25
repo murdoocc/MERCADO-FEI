@@ -299,6 +299,73 @@
       </div>
 @endsection
 
+@section('events')
 
+      <div class="container">
+
+      <div class="pull-right">
+            <a class="btn btn-outline-warning" href="{{ route('categories.create') }}"> Entra al foro</a>
+        </div>
+
+        <div class="section-title">
+          <h2>Bienvenido al <span>apartado </span> "FORO"</h2>
+        </div>               
+
+        <div class="owl-carousel events-carousel">
+
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="assets/img/electronicos.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Entra y conoce posibles nuevos productos</h3>
+              <div class="price">
+                <p><span>Tenemos varias categorias</span></p>
+              </div>
+              <p class="font-italic">
+                El proposito del foro es brindar un espacio para que mediante el apoyo de todos podamos tener una variedad más enriquecida de productos
+              </p>
+              <ul>
+                <li><i class="icofont-check-circled"></i> Comparte tu idea de un producto.</li>
+                <li><i class="icofont-check-circled"></i> Da tu voto para los productos propuestos.</li>
+                <li><i class="icofont-check-circled"></i> Visualiza como van las votaciones.</li>
+              </ul>
+              <p>
+                No olvides que tienes la libertad de proponer cualquier producto, considera que confiamos en tu buen criterio.
+              </p>
+            </div>
+          </div>
+       
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="assets/img/about.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Productos actuales</h3>
+              <div class="price">
+                <p><span>Contamos con un total de {{count($products)}}</span></p>
+              </div>
+              <p class="font-italic">
+                Los productos que ofrecen los emprendedores son de muy buena calidad, garantizan satisfacción a cada uno de sus compradores.
+              </p>
+              <p class="font-italic">
+                Conoce algunos de nuestros productos
+              </p>
+              <ul>
+              @php
+                for($i = 0; $i < 5; $i++){
+                  $cant = count($products) - 1;
+                  $rand = rand(0, $cant);
+                  echo "<li><i class='icofont-check-circled'></i>". $i.".-". $products[$rand]->nombre .".</li>";
+                }   
+              @endphp                
+              </ul>     
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+@endsection
 
 
