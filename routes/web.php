@@ -27,13 +27,15 @@ Route::get('store_image', 'StoreImageController@index');
 
 Route::post('store_image/insert_image', 'StoreImageController@insert_image');
 
+Route::resource('proposals','ProposalController');
+
 Route::resource('categories','CategoryController');
 
 Route::resource('products','ProductController');
 
 Route::resource('users','UserController');
 
-Route::resource('proposals','ProposalController');
+
 
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 

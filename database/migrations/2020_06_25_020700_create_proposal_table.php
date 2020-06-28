@@ -19,7 +19,7 @@ class CreateProposalTable extends Migration
             $table->string('nombre_propuesta',20);
             $table->string('detalle',255);
             $table->string('categoria',100);
-            $table->Integer('votos');
+            $table->Integer('votos')->nullable()->unsigned()->default(0)->nullable();
             $table->timestamps();
         });
     }
