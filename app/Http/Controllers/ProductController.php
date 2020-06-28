@@ -35,7 +35,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::latest()->paginate(10);            
+        $categories = Category::latest()->paginate(10);
         return view('products.create', compact('categories'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

@@ -22,26 +22,26 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>Details</th>
+            <th>Nombre del producto</th>
+            <th>Detalle</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($proposals as $proposal)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $proposal->name }}</td>
-            <td>{{ $proposal->detail }}</td>
+            <td>{{ $proposal->nombre_propuesta }}</td>
+            <td>{{ $proposal->detalle }}</td>
             <td>
                 <form action="{{ route('proposals.destroy',$proposal->id) }}" method="POST">
    
-                    <a class="btn btn-info" href="{{ route('proposals.show',$proposal->id) }}">Show</a>
+                    <!--<a class="btn btn-info" href="{{ route('proposals.show',$proposal->id) }}">Show</a>
     
-                    <a class="btn btn-primary" href="{{ route('proposals.edit',$proposal->id) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('proposals.edit',$proposal->id) }}">Edit</a>-->
    
                     @csrf
                     @method('DELETE')
       
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger">Eliminar propuesta</button>
                 </form>
             </td>
         </tr>
@@ -84,10 +84,18 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Categoria:</strong>
-                                <input type="text" name="categoria" class="form-control" placeholder="categoria">
+                                <strong>Categoria:</strong>                            
+                                <select id='category' name='categoria' class='form-control'>";
+                                    <option selected>Selecciona una categoria</option>                        
+                                    @foreach ($categories as $category)                            
+                                        <option>{{ $category->id }} {{ $category->categoria }} {{ $category->sub_uno }} {{ $category->sub_dos }}</option>
+                                    @endforeach
+                                </select>                            
+                            
                             </div>
-                        </div>
+                        </div>                        
+                        
+                    </div>  
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary">Enviar registro</button>
                         </div>
