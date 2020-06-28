@@ -27,13 +27,15 @@ Route::get('store_image', 'StoreImageController@index');
 
 Route::post('store_image/insert_image', 'StoreImageController@insert_image');
 
+Route::resource('proposals','ProposalController');
+
 Route::resource('categories','CategoryController');
 
 Route::resource('products','ProductController');
 
 Route::resource('users','UserController');
 
-Route::resource('proposals','ProposalController');
+
 
 //Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 

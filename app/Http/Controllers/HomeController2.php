@@ -9,6 +9,7 @@ use App\Product;
 use App\User;
 use App\Category;
 
+
 class HomeController2 extends Controller
 {
     /**

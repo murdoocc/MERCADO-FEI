@@ -318,7 +318,7 @@
       <div class="container">
 
       <div class="pull-right">
-            <a class="btn btn-outline-warning" href="{{ route('categories.create') }}"> Entra al foro</a>
+            <a class="btn btn-outline-warning" href="{{ route('proposals.index') }}"> Entra al foro</a>
         </div>
 
         <div class="section-title">
