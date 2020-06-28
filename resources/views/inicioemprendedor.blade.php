@@ -49,7 +49,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name"  placeholder="{{ Auth::user()->name }}">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ Auth::user()->name }}" required autocomplete="name">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -63,7 +63,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Apellido paterno') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_p" value="{{ old('name') }}" required autocomplete="name" placeholder="{{ Auth::user()->apellido_p }}">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_p" value="{{ Auth::user()->apellido_p }}" required autocomplete="name" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Apellido materno') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_m" value="{{ old('name') }}" required autocomplete="name" placeholder="{{ Auth::user()->apellido_m }}">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_m" value="{{ Auth::user()->apellido_m }}" required autocomplete="name">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -91,7 +91,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ Auth::user()->email }}">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ Auth::user()->email }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -119,7 +119,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Alias') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="alias" value="{{ old('name') }}" required autocomplete="name" placeholder="{{ Auth::user()->alias }}">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="alias" value="{{ Auth::user()->alias }}" required autocomplete="name" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -133,7 +133,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Numero de telefono') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="number_tel" value="{{ old('name') }}" required autocomplete="name" placeholder="{{ Auth::user()->number_tel }}">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="number_tel" value="{{ Auth::user()->number_tel }}" required autocomplete="name" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -147,7 +147,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="carrera" value="{{ old('name') }}" required autocomplete="name" placeholder="{{ Auth::user()->carrera }}">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="carrera" value="{{ Auth::user()->carrera }}" required autocomplete="name">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -161,6 +161,20 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="file" class="form-control @error('name') is-invalid @enderror" name="user_image" value="{{ old('name') }}" required autocomplete="name" multiple>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Ubicacion') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="ubicacion" placeholder="SOLO el nombre o numero de salon" required>
+
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('email',50)->unique();
             $table->string('number_tel',15)->nullable();
             $table->string('carrera',50)->nullable();
+            $table->string('ubicacion',50)->nullable();
             $table->boolean('estatus')->nullable();
             $table->timestamps();                      
             $table->engine = 'InnoDB';

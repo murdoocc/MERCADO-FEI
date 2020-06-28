@@ -23,12 +23,9 @@ class CreateProductsTable extends Migration
             $table->boolean('estado')->nullable();
             $table->Integer('existencia')->unsigned()->default(0)->nullable();
             $table->timestamps();
-            
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('categories');
 
         });
-        DB::statement("ALTER TABLE products ADD product_image LONGBLOB")->nullable();
+        DB::statement("ALTER TABLE products ADD product_image LONGBLOB");
     }
 
     /**

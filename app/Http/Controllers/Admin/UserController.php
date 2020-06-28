@@ -49,6 +49,7 @@ class UserController extends Controller
         $user->number_tel = $request->number_tel;
         $user->carrera = $request->carrera;
         $user->user_image = $image;
+        $user->ubicacion = $request->ubicacion;
         $user->estatus = $request->estado; 
         $user->save();
         return redirect()->route('inicioemprendedor');

@@ -406,10 +406,6 @@
     <section id="gallery" class="gallery">    
     <div class="container-fluid">
 
-        <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
-        </div>
-
         <div class="section-title">
         <h2> Productos <span> Disponibles</span></h2>
         <p>Gestiona todos tus productos en este apartado</p>
@@ -437,14 +433,20 @@
                         <h5 class='card-title'>{{ $product->nombre }} </h5>
                         <h6 class='card-subtitle mb-2 text-muted price'> {{ $product->precio }}</h6>
                         <p class='card-text'> {{ $product->detalle }} </p>
+                        @if($product->estado==1)
+                          <p class='card-text' style="color:green"> En existencia</p>
+                        @else
+                          <p class='card-text' style="color:red"> Agotado</p>
+                        @endif
                     </div>      
                     <div class='card-footer'>
-                        <form action="{{ route('products.destroy',$product->id) }}" method="POST">
-                        <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                    @php
+                      foreach ($users as $user){
+                        if($user->id == $product->user_id ){
+                          echo "<h4>Elaborado por ". $user->name ."</h4>";
+                        }                        
+                      }   
+                    @endphp                       
                     </div>
                 </div>
             </div>                
@@ -488,6 +490,11 @@
                                 <h4>{{ $user->name }} </h4>
                                 <h6 class='card-subtitle mb-2 text-muted'> {{ $user->number_tel }}</h6>
                                 <p class='card-text'> {{ $user->email }} </p>
+                                @if($user->estatus==1)
+                                  <p class='card-text' style="color:green"> Disponible - Salon : {{ $user->ubicacion }}</p>
+                                @else
+                                  <p class='card-text' style="color:red"> No Disponible</p>
+                                @endif
                             </div>      
                         </div>
                     </div>                
