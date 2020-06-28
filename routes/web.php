@@ -35,6 +35,8 @@ Route::resource('users','UserController');
 
 Route::resource('proposals','ProposalController');
 
+Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
+
 //Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 //Route::get('store_image/fetch_image/{id}', 'StoreImageController@fetch_image');

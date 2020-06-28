@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('carrera',50)->nullable();
             $table->string('ubicacion',50)->nullable();
             $table->boolean('estatus')->nullable();
+            $table->boolean('is_admin')->nullable();
             $table->timestamps();                      
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
