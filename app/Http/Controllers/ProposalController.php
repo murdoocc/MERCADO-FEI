@@ -22,6 +22,8 @@ class ProposalController extends Controller
 
     }
 
+    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -67,9 +69,12 @@ class ProposalController extends Controller
      * @param  \App\Proposal  $proposal
      * @return \Illuminate\Http\Response
      */
-    public function show(Proposal $proposal)
+    public function show()
     {
-        return view('proposals.show',compact('proposals'));
+        $categories = Category::latest()->paginate(10);
+        $proposals = Proposal::latest()->paginate(100);  
+        return view('proposals.edit',compact('proposals','categories'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -78,9 +83,23 @@ class ProposalController extends Controller
      * @param  \App\Proposal  $proposal
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proposal $proposal)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Proposal  $proposal
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request, Proposal $proposal)
     {
-        return view('proposals.edit',compact('proposals'));
+        
+        $votos = $proposal->votos;
+        $votos += 1;                
+
+        $proposal->update(['votos' => $votos]); 
+      
+        return redirect()->route('proposals.index')
+                        ->with('success','Proposal updated successfully');
     }
 
     /**
@@ -92,19 +111,7 @@ class ProposalController extends Controller
      */
     public function update(Request $request, Proposal $proposal)
     {
-        $request->validate([
-            'alias_emprendedor' => 'required',
-            'nombre_propuesta' => 'required',
-            'detalle' => 'required',
-            'categoria' => 'required',
-            'votos' => 'required',
-        ]);
-  
-        $proposal->update($request->all());
-  
-        return redirect()->route('proposals.index')
-                        ->with('success','Proposal updated successfully');
-
+        
     }
 
     /**

@@ -27,7 +27,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {        
         $products = Product::latest()->paginate(10);
         $users = User::latest()->paginate(5);
         return view('inicioemprendedor',compact('products', 'users'))
