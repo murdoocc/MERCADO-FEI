@@ -33,4 +33,9 @@ class HomeController extends Controller
         return view('inicioemprendedor',compact('products', 'users'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
+    public function adminHome()
+    {
+        return view('adminHome');
+    }
 }
