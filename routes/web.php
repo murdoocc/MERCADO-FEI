@@ -35,9 +35,13 @@ Route::resource('products','ProductController');
 
 Route::resource('users','UserController');
 
-
-
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
+
+Route::put('update','UserController@update2')->name('admin.update');
+
+Route::post('create','UserController@create')->name('admin.create');
+
+Route::delete('destroy','UserController@destroy')->name('admin.destroy');
 
 //Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
