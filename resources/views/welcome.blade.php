@@ -142,7 +142,7 @@
     
 
     
-    <!-- ======= Menu Section ======= -->
+    <!-- ======= Menu Section 
     <section id="menu" class="menu">
       <div class="container">
 
@@ -247,9 +247,9 @@
         </div>
 
       </div>
-    </section><!-- End Menu Section -->
+    </section>End Menu Section -->
 
-    <!-- ======= Specials Section ======= -->
+    <!-- ======= Specials Section 
     <section id="specials" class="specials">
       <div class="container">
 
@@ -345,11 +345,11 @@
         </div>
 
       </div>
-    </section><!-- End Specials Section -->
+    </section>End Specials Section -->
 
    
 
-    <!-- ======= Book A Table Section ======= -->
+    <!-- ======= Book A Table Section
     <section id="book-a-table" class="book-a-table">
       <div class="container">
 
@@ -398,7 +398,7 @@
         </form>
 
       </div>
-    </section><!-- End Book A Table Section -->
+    </section> End Book A Table Section -->
 
     
 
@@ -507,7 +507,7 @@
     </section><!-- End Chefs Section -->
 
     
-     <!-- ======= Events Section ======= -->
+     <!-- ======= FOROEvents Section ======= -->
      <section id="events" class="events">
       <div class="container">
 
