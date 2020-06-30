@@ -15,11 +15,16 @@
 		function recibir(numero)
 		{
 			var valor = document.getElementById("id"+numero).value;
-			document.getElementById("id2").value=valor;
-			var valor2 = document.getElementById("id"+numero).value;
-			document.getElementById("id3").value=valor2;        
+			document.getElementById("idp").value=valor;  
 		} 
-	</script>
+</script>
+<script>
+		function recibir2(numero)
+		{
+			var valor2 = document.getElementById("idid"+numero).value;
+			document.getElementById("idp2").value=valor2;   
+		} 
+</script>
 <style>
 body {
 	color: #566787;
@@ -34,7 +39,7 @@ body {
 	background: #fff;
 	padding: 20px 25px;
 	border-radius: 3px;
-	min-width: 1500px;
+	min-width: 1000px;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .table-title {        
@@ -302,10 +307,10 @@ $(document).ready(function(){
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Administrar <b>Emprendedores</b></h2>
+						<h2>Administrar <b>Productos</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar emprendedor</span></a>
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar producto</span></a>
 						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
 					</div>
 				</div>
@@ -322,20 +327,15 @@ $(document).ready(function(){
 						<th>Imagen</th>
 						<th>Id</th>
 						<th>Nombre</th>
-						<th>Apellido paterno</th>
-						<th>Apellido materno</th>
-						<th>Email</th>
-						<th>Contraseña</th>
-						<th>Alias</th>
-						<th>Telefono</th>
-                        <th>Carrera</th>
-						<th>Ubicación</th>
+						<th>Precio</th>
+						<th>Detalle</th>
 						<th>Estado</th>
+						<th>Existencia</th>
 						<th>Funciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($users as $user)
+					@foreach ($products as $product)
 					<tr>
 						<td>
 							<span class="custom-checkbox">
@@ -344,7 +344,7 @@ $(document).ready(function(){
 							</span>
 						</td>
 						<td>@php 
-								$image = imagecreatefromstring($user->user_image); 
+								$image = imagecreatefromstring($product->product_image); 
 								ob_start(); 
 								imagejpeg($image, null, 80); 
 								$data = ob_get_contents(); 
@@ -352,28 +352,23 @@ $(document).ready(function(){
 								echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="75" height="75" style= "border-radius: 50%;"/>';   
 							@endphp  
 						</td>
-						<td id="{{ $user->id }}">{{ $user->id }}</td>	
-						<td>{{ $user->name }}</td>
-						<td>{{ $user->apellido_p }}</td>
-						<td>{{ $user->apellido_m }}</td>
-						<td>{{ $user->email }}</td>
-						<td>********</td>
-						<td>{{ $user->alias }}</td>
-						<td>{{ $user->number_tel }}</td>
-						<td>{{ $user->carrera }}</td>
-						<td>{{ $user->ubicacion }}</td>
-						<td>{{ $user->estatus }}</td>
+						<td id="{{ $product->id }}">{{ $product->id }}</td>	
+						<td>{{ $product->nombre }}</td>
+						<td>{{ $product->precio }}</td>
+						<td>{{ $product->detalle }}</td>
+						<td>{{ $product->estado }}</td>
+						<td>{{ $product->existencia }}</td>
 						<td>
 						@php
-							$i = $user->id
+							$i = $product->id
 						@endphp
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#editEmployeeModal">
-      						<input type="text" id="id{{$i}}" value="{{ $user->id }}" hidden/>
+      						<input type="text" id="id{{$i}}" value="{{ $product->id }}" hidden/>
       						<input type="button" class="btn btn-warning btn-lg btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}});"/>
    						</form>
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
-      						<input type="text" id="id{{$i}}" value="{{ $user->id }}" hidden/>
-      						<input type="button" class="btn btn-danger btn-lg btn-block" id="button1" name="enviar" value="Eliminar" onclick="recibir({{$i}});"/>
+      						<input type="text" id="idid{{$i}}" value="{{ $product->id }}" hidden/>
+      						<input type="button" class="btn btn-danger btn-lg btn-block" id="button2" name="enviar2" value="Eliminar" onclick="recibir2({{$i}});"/>
    						</form>				
 						</td>
 					</tr>
@@ -399,16 +394,16 @@ $(document).ready(function(){
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="POST" action="{{ route('admin.create') }}" enctype="multipart/form-data">
+			<form method="POST" action="{{ route('admin.createproduct') }}" enctype="multipart/form-data">
 			@csrf
 				<div class="modal-header">						
-					<h4 class="modal-title">Agregar emprendedor</h4>
+					<h4 class="modal-title">Agregar producto</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
 						<label>Nombre</label>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -416,8 +411,8 @@ $(document).ready(function(){
                         @enderror
 					</div>
 					<div class="form-group">
-						<label>Apellido paterno</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_p" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						<label>Precio</label>
+                        <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="precio" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -425,8 +420,8 @@ $(document).ready(function(){
                         @enderror
 					</div>
 					<div class="form-group">
-						<label>Apellido materno</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_m" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						<label>Detalle</label>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="detalle" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -434,26 +429,8 @@ $(document).ready(function(){
                         @enderror
 					</div>
 					<div class="form-group">
-						<label>Email</label>
-						<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-						@error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>
-					<div class="form-group">
-						<label>Password</label>
-						<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-						@error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-						@enderror
-					</div>
-					<div class="form-group">
-						<label>Alias</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="alias" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						<label>Existencia</label>
+                        <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="existencia" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -461,8 +438,8 @@ $(document).ready(function(){
                         @enderror
 					</div>
 					<div class="form-group">
-						<label>Número de telefono</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="number_tel" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						<label>Id del emprendedor propietario</label>
+                        <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="id_emprendedor" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -470,17 +447,17 @@ $(document).ready(function(){
                         @enderror
 					</div>
 					<div class="form-group">
-						<label>Carrera</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="carrera" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                        @error('name')
+						<label>Id de la categoria perteneciente</label>
+                        <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="id_categoria" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-					</div>		
+					</div>
 					<div class="form-group">
-						<label>Imágen de perfil</label>
-						<input id="name" type="file" class="form-control @error('name') is-invalid @enderror" name="user_image" value="{{ old('name') }}" required autocomplete="name" autofocus multiple>
+						<label>Imágen de producto</label>
+						<input id="name" type="file" class="form-control @error('name') is-invalid @enderror" name="product_image" value="{{ old('name') }}" required autocomplete="name" autofocus multiple>
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -488,6 +465,20 @@ $(document).ready(function(){
                         @enderror
 					</div>															
 				</div>
+				<div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Estado') }}</label>
+
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="materialInline1" name="estado" value="1">
+                                <label class="form-check-label" for="materialInline1">Activo</label>
+                                </div>
+
+                                <!-- Material inline 2 -->
+                                <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="materialInline2" name="estado" value="0">
+                                <label class="form-check-label" for="materialInline2">Inactivo</label>
+                            </div>
+                        </div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="submit" class="btn btn-success" value="Add">
@@ -500,126 +491,95 @@ $(document).ready(function(){
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="put" action="{{ route('admin.update')}}" enctype="multipart/form-data">
+			<form method="post" action="{{ route('admin.updateproduct')}}" enctype="multipart/form-data">
 				@csrf
-                @method('PUT')
+                @method('POST')
 				<div class="modal-header">						
-					<h4 class="modal-title">Editar emprendedor</h4>
+					<h4 class="modal-title">Editar producto</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label>Id</label>
-						<input id="id2" type="text" class="form-control @error('name') is-invalid @enderror" name="ide" required autocomplete="name">
-						@error('name')
-                        <span class="invalid-feedback" role="alert">
-                        	<strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-					</div>					
+						<label>Id: <input id="idp" type="text" name="idp" style="border:0; width:15px;"></label>
+					</div>	
 					<div class="form-group">
 						<label>Nombre</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="name">
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
-                        <span class="invalid-feedback" role="alert">
-                        	<strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-					</div>
-					<div class="form-group">
-						<label>Apellido paterno</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_p" value="{{ Auth::user()->apellido_p }}" required autocomplete="name" >
-						@error('name')
-                        	<span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                        	</span>
-                        @enderror
-					</div>
-					<div class="form-group">
-						<label>Apellido materno</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_m" value="{{ Auth::user()->apellido_m }}" required autocomplete="name">
-						@error('name')
-                        	<span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ Auth::user()->email }}" required autocomplete="email">
-						@error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-					</div>		
+					</div>
 					<div class="form-group">
-						<label>Password</label>
-						<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="********">
-						@error('password')
+						<label>Precio</label>
+                        <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="precio" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
 					</div>
 					<div class="form-group">
-						<label>Alias</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="alias" value="{{ Auth::user()->alias }}" required autocomplete="name" >
+						<label>Detalle</label>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="detalle" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-					</div>	
-					<div class="form-group">
-						<label>#Telefono</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="number_tel" value="{{ Auth::user()->number_tel }}" required autocomplete="name" >
-						@error('name')
-                        	<span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>	
-					<div class="form-group">
-						<label>Carrera</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="carrera" value="{{ Auth::user()->carrera }}" required autocomplete="name">
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                    	@enderror
 					</div>
 					<div class="form-group">
-						<label>Foto</label>
-						<input id="name" type="file" class="form-control @error('name') is-invalid @enderror" name="user_image" value="{{ old('name') }}" required autocomplete="name" multiple>
+						<label>Existencia</label>
+                        <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="existencia" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						@error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
+					<div class="form-group">
+						<label>Id del emprendedor propietario</label>
+                        <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="id_emprendedor" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						@error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
+					<div class="form-group">
+						<label>Id de la categoria perteneciente</label>
+                        <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="id_categoria" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						@error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
+					<div class="form-group">
+						<label>Imágen de producto</label>
+						<input id="name" type="file" class="form-control @error('name') is-invalid @enderror" name="product_image" value="{{ old('name') }}" required autocomplete="name" autofocus multiple>
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-					</div>			
-					<div class="form-group">
-						<label>Ubicación</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="ubicacion" placeholder="SOLO el nombre o numero de salon" required>
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>
-					<div class="form-group">
-						<label>Estado</label>
-						<div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" id="materialInline1" name="estado" value="1">
-                            <label class="form-check-label" for="materialInline1">Activo</label>
-                        </div>
-						<!-- Material inline 2 -->
-                        <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" id="materialInline2" name="estado" value="0">
-                            <label class="form-check-label" for="materialInline2">Inactivo</label>
-                        </div>
 					</div>						
 				</div>
+				<div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Estado') }}</label>
+
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="materialInline1" name="estado" value="1">
+                                <label class="form-check-label" for="materialInline1">Activo</label>
+                                </div>
+
+                                <!-- Material inline 2 -->
+                                <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="materialInline2" name="estado" value="0">
+                                <label class="form-check-label" for="materialInline2">Inactivo</label>
+                            </div>
+                        </div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="submit" class="btn btn-info" value="Save">
@@ -632,22 +592,17 @@ $(document).ready(function(){
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="{{ route('admin.destroy')}}" method="POST">
+		<form action="{{ route('admin.deleteproduct')}}" method="POST">
 			@csrf
             @method('DELETE')
 				<div class="modal-header">						
-					<h4 class="modal-title">Delete Employee</h4>
+					<h4 class="modal-title">Eliminar producto</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="form-group">
-						<label>Id</label>
-						<input id="id3" type="text" class="form-control @error('name') is-invalid @enderror" name="ide" required autocomplete="name">
-						@error('name')
-                        <span class="invalid-feedback" role="alert">
-                        	<strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-					</div>
+				<div class="modal-body">					
+					<p>¿Estas seguro de querer eliminar el producto con el id <input id="idp2" type="text" name="idp" style="border:0; width:15px;">?</p>
+					<p class="text-warning"><small>Esta acción no podra ser revertida.</small></p>
+				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="submit" class="btn btn-danger" value="Delete">

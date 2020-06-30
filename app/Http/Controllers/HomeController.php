@@ -45,8 +45,7 @@ class HomeController extends Controller
     public function adminproducts()
     {
         $products = Product::latest()->paginate(10);
-        $users = User::latest()->paginate(5);
-        return view('adminproducts',compact('products', 'users'))
+        return view('adminproducts',compact('products'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

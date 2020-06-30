@@ -172,4 +172,81 @@ class ProductController extends Controller
         return redirect()->route('inicioemprendedor')
                         ->with('success','Product deleted successfully');
     }
+
+    public function adminstore(Request $request)
+    {        
+        $image_file = $request->input('product_image');
+        $image_file = $request->file('product_image');
+        $image = Image::make($image_file);
+        Response::make($image->encode('jpeg'));
+
+        
+        
+        $cate = $request->input('id_categoria');
+        $tok = strtok($cate, " ");
+
+        $request->validate([
+            'id_emprendedor' => 'required',            
+            'nombre' => 'required',
+            'precio' => 'required',
+            'detalle' => 'required',
+            'estado' => 'required',
+            'existencia' => 'required',
+            'product_image' => 'required',
+        ]);  
+
+        Product::create(
+        [
+            'user_id' => $request->input('id_emprendedor'),
+            'category_id' => $tok,
+            'nombre' => $request->input('nombre'),
+            'precio' => $request->input('precio'),
+            'detalle' => $request->input('detalle'),
+            'estado' => $request->input('estado'),
+            'existencia' => $request->input('existencia'),
+            'product_image' => $image,
+        ]);   
+
+        return redirect()->route('admin.products')
+                        ->with('success','Product created successfully');
+    }
+    public function adminupdate(Request $request)
+    {        
+        $cate = $request->id_categoria;
+        $tok = strtok($cate, " ");
+
+        $request->validate([
+            'id_emprendedor' => 'required',            
+            'nombre' => 'required',
+            'precio' => 'required',
+            'detalle' => 'required',
+            'estado' => 'required',
+            'existencia' => 'required',
+            'product_image' => 'required|image',
+        ]);
+            $image_file = $request['product_image'];
+            $image = Image::make($image_file);
+            Response::make($image->encode('jpeg'));  
+
+            $product = Product::find($request->idp);
+            $product->user_id = $request->id_emprendedor;
+            $product->category_id = $request->id_categoria;
+            $product->nombre = $request->nombre;
+            $product->precio = $request->precio;
+            $product->detalle = $request->detalle;
+            $product->estado = $request->estado;
+            $product->existencia = $request->existencia;
+            $product->product_image = $image;
+            $product->save();
+        return redirect()->route('admin.products')
+                        ->with('success','Product created successfully');
+    }
+
+    public function admindestroy(Request $request)
+    {
+        $product = Product::find($request->idp);
+        $product->delete();
+        return redirect()->route('admin.products')
+                        ->with('success','Category deleted successfully');
+    }
 }
