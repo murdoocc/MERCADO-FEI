@@ -122,4 +122,30 @@ class CategoryController extends Controller
 
         return redirect()->route('admin.categories')->with('success','Category created successfully.');
     }
+
+    public function adminupdate(Request $request)
+    {
+        $request->validate([
+            'categoria' => 'required',
+            'sub_uno' => 'required',
+            'sub_dos',
+            'descripcion' => 'required',
+        ]);  
+        $category = Category::find($request->ide);
+        $category->categoria = $request->categoria;
+        $category->sub_uno = $request->sub_uno;
+        $category->sub_dos = $request->sub_dos;
+        $category->descripcion = $request->descripcion;
+        $category->save(); 
+        return redirect()->route('admin.categories')
+                        ->with('success','Category updated successfully');
+    }
+
+    public function admindestroy(Request $request)
+    {
+        $category = Category::find($request->ide);
+        $category->delete();
+        return redirect()->route('admin.categories')
+                        ->with('success','Category deleted successfully');
+    }
 }

@@ -51,6 +51,10 @@ Route::delete('destroy','UserController@destroy')->name('admin.destroy');
 
 Route::post('createcategorie','CategoryController@storeadmin')->name('admin.createcategorie');
 
+Route::post('updatecategorie','CategoryController@adminupdate')->name('admin.updatecategorie');
+
+Route::delete('deletecategorie','CategoryController@admindestroy')->name('admin.deletecategorie');
+
 //Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 //Route::get('store_image/fetch_image/{id}', 'StoreImageController@fetch_image');

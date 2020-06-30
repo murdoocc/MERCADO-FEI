@@ -15,11 +15,16 @@
 		function recibir(numero)
 		{
 			var valor = document.getElementById("id"+numero).value;
-			document.getElementById("id2").value=valor;
-			var valor2 = document.getElementById("id"+numero).value;
-			document.getElementById("id3").value=valor2;        
+			document.getElementById("idc").value=valor;       
 		} 
-	</script>
+</script>
+<script>
+		function recibir2(numero)
+		{
+			var valor2 = document.getElementById("idid"+numero).value;
+			document.getElementById("idc2").value=valor2;       
+		} 
+</script>
 <style>
 body {
 	color: #566787;
@@ -346,12 +351,12 @@ $(document).ready(function(){
 							$i = $categorie->id
 						@endphp
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#editEmployeeModal">
-      						<input type="text" id="id{{$i}}" value="{{ $categorie->id }}" hidden/>
+      						<input type="number" id="id{{$i}}" value="{{ $categorie->id }}" hidden/>
       						<input type="button" class="btn btn-warning" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}});"/>
    						</form>
-						<form id="formulario" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
-      						<input type="text" id="id{{$i}}" value="{{ $categorie->id }}" hidden/>
-      						<input type="button" class="btn btn-danger" id="button1" name="enviar" value="Eliminar" onclick="recibir({{$i}});"/>
+						<form id="formulario2" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
+      						<input type="number" id="idid{{$i}}" value="{{ $categorie->id }}" hidden/>
+      						<input type="button" class="btn btn-danger" id="button2" name="enviar2" value="Eliminar" onclick="recibir2({{$i}});"/>
    						</form>				
 						</td>
 					</tr>
@@ -433,125 +438,54 @@ $(document).ready(function(){
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="put" action="{{ route('admin.update')}}" enctype="multipart/form-data">
+			<form method="post" action="{{ route('admin.updatecategorie') }}" enctype="multipart/form-data">
 				@csrf
-                @method('PUT')
+                @method('POST')
 				<div class="modal-header">						
-					<h4 class="modal-title">Editar emprendedor</h4>
+					<h4 class="modal-title">Editar categoria</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label>Id</label>
-						<input id="id2" type="text" class="form-control @error('name') is-invalid @enderror" name="ide" required autocomplete="name">
-						@error('name')
-                        <span class="invalid-feedback" role="alert">
-                        	<strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+						<label>Id: <input id="idc" type="text" name="ide" style="border:0; width:15px;"></label>
+						
 					</div>					
 					<div class="form-group">
-						<label>Nombre</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="name">
+						<label>Categoria</label>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="categoria" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
-                        <span class="invalid-feedback" role="alert">
-                        	<strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-					</div>
-					<div class="form-group">
-						<label>Apellido paterno</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_p" value="{{ Auth::user()->apellido_p }}" required autocomplete="name" >
-						@error('name')
-                        	<span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                        	</span>
-                        @enderror
-					</div>
-					<div class="form-group">
-						<label>Apellido materno</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_m" value="{{ Auth::user()->apellido_m }}" required autocomplete="name">
-						@error('name')
-                        	<span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ Auth::user()->email }}" required autocomplete="email">
-						@error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>		
-					<div class="form-group">
-						<label>Password</label>
-						<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="********">
-						@error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
 					</div>
 					<div class="form-group">
-						<label>Alias</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="alias" value="{{ Auth::user()->alias }}" required autocomplete="name" >
+						<label>Sub categoria 1</label>
+						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="sub_uno" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						@error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
+					<div class="form-group">
+						<label>Sub categoria 2</label>
+						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="sub_dos" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						@error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
+					<div class="form-group">
+						<label>Descripción</label>
+						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="descripcion" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
 					</div>	
-					<div class="form-group">
-						<label>#Telefono</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="number_tel" value="{{ Auth::user()->number_tel }}" required autocomplete="name" >
-						@error('name')
-                        	<span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>	
-					<div class="form-group">
-						<label>Carrera</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="carrera" value="{{ Auth::user()->carrera }}" required autocomplete="name">
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                    	@enderror
-					</div>
-					<div class="form-group">
-						<label>Foto</label>
-						<input id="name" type="file" class="form-control @error('name') is-invalid @enderror" name="user_image" value="{{ old('name') }}" required autocomplete="name" multiple>
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>			
-					<div class="form-group">
-						<label>Ubicación</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="ubicacion" placeholder="SOLO el nombre o numero de salon" required>
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>
-					<div class="form-group">
-						<label>Estado</label>
-						<div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" id="materialInline1" name="estado" value="1">
-                            <label class="form-check-label" for="materialInline1">Activo</label>
-                        </div>
-						<!-- Material inline 2 -->
-                        <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" id="materialInline2" name="estado" value="0">
-                            <label class="form-check-label" for="materialInline2">Inactivo</label>
-                        </div>
-					</div>						
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -565,22 +499,17 @@ $(document).ready(function(){
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="{{ route('admin.destroy')}}" method="POST">
+			<form action="{{ route('admin.deletecategorie')}}" method="POST">
 			@csrf
             @method('DELETE')
 				<div class="modal-header">						
 					<h4 class="modal-title">Delete Employee</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="form-group">
-						<label>Id</label>
-						<input id="id3" type="text" class="form-control @error('name') is-invalid @enderror" name="ide" required autocomplete="name">
-						@error('name')
-                        <span class="invalid-feedback" role="alert">
-                        	<strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-					</div>
+				<div class="modal-body">					
+					<p>¿Estas seguro de querer eliminar al emprendedor con el id <input id="idc2" type="text" name="ide" style="border:0; width:15px;">?</p>
+					<p class="text-warning"><small>Esta acción no podra ser revertida.</small></p>
+				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="submit" class="btn btn-danger" value="Delete">
