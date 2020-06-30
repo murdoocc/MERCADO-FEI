@@ -40,12 +40,12 @@
 <body>
 
   <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
+  <!--<section id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
     <div class="container text-right">
       <i class="icofont-phone"></i> +1 5589 55488 55
       <i class="icofont-clock-time icofont-rotate-180"></i> Mon-Sat: 11:00 AM - 23:00 PM
     </div>
-  </section>
+  </section>-->
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
@@ -68,10 +68,10 @@
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animated fadeInDown"><span>MERCADO</span> FEI</h2>
-                <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <p class="animated fadeInUp">Te damos la bienvenida Emprendedor! Descubre todo lo que puedes realizar dentro de esta plataforma.</p>
                 <div>
-                  <a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
-                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>
+                  <!--<a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>-->
                 </div>
               </div>
             </div>
@@ -81,11 +81,11 @@
           <div class="carousel-item" style="background: url(assets/img/slide/slide-2.jpg);">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animated fadeInDown">Lorem Ipsum Dolor</h2>
-                <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <h2 class="animated fadeInDown">MERCADO FEI</h2>
+                <p class="animated fadeInUp">Haz un uso adecuado de la plataforma, recuerda que eres libre de usar todas las funciones.</p>
                 <div>
-                  <a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
-                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>
+                  <!--<a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>-->
                 </div>
               </div>
             </div>
@@ -96,11 +96,11 @@
             <div class="carousel-background"><img src="assets/img/slide/slide-3.jpg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animated fadeInDown">Sequi ea ut et est quaerat</h2>
-                <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <h2 class="animated fadeInDown">MERCADO FEI</h2>
+                <p class="animated fadeInUp">Si crees que hay algo que puede mejorar, por favor no dudes en compartir tu idea con nosotros.</p>
                 <div>
-                  <a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
-                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>
+                  <!--<a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>-->
                 </div>
               </div>
             </div>

@@ -40,12 +40,12 @@
 <body>
 
   <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
+  <!--<section id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
     <div class="container text-right">
       <i class="icofont-phone"></i> +1 5589 55488 55
       <i class="icofont-clock-time icofont-rotate-180"></i> Mon-Sat: 11:00 AM - 23:00 PM
     </div>
-  </section>
+  </section>-->
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
@@ -83,10 +83,10 @@
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animated fadeInDown"><span>MERCADO</span> FEI</h2>
-                <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <p class="animated fadeInUp">Descrube una plataforma hecha para el apoyo economico de los estudiantes perteneciestes a la Facultad de Estadistica e Informatica.</p>
                 <div>
-                  <a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
-                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>
+                  <!--<a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>-->
                 </div>
               </div>
             </div>
@@ -96,11 +96,11 @@
           <div class="carousel-item" style="background: url(assets/img/slide/slide-2.jpg);">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animated fadeInDown">Lorem Ipsum Dolor</h2>
-                <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <h2 class="animated fadeInDown">MERCADO FEI</h2>
+                <p class="animated fadeInUp">Contamos con un apartado donde puedes colaborar de manera asincrona con tus compañeros emprendedores.</p>
                 <div>
-                  <a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
-                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>
+                  <!--<a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>-->
                 </div>
               </div>
             </div>
@@ -111,11 +111,11 @@
             <div class="carousel-background"><img src="assets/img/slide/slide-3.jpg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animated fadeInDown">Sequi ea ut et est quaerat</h2>
-                <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <h2 class="animated fadeInDown">MERCADO FEI</h2>
+                <p class="animated fadeInUp">No olvides que cualquier problema hayado al navegar en la plataforma puede ser solucionado, solo necesitamos su apoyo al comunicarte con nosotros.</p>
                 <div>
-                  <a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
-                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>
+                  <!--<a href="#menu" class="btn-menu animated fadeIn scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animated fadeIn scrollto">Book a Table</a>-->
                 </div>
               </div>
             </div>
@@ -408,7 +408,7 @@
 
         <div class="section-title">
         <h2> Productos <span> Disponibles</span></h2>
-        <p>Gestiona todos tus productos en este apartado</p>
+        <p>Conoce todos los productos de nuestros Emprendedores</p>
         </div>
 
         <div class="row no-gutters">
@@ -512,8 +512,8 @@
       <div class="container">
 
       <div class="pull-right">
-            <a class="btn btn-outline-warning" href="{{ route('proposals.index') }}"> Entra al foro</a>
-        </div>
+          <a class="btn btn-outline-warning" href="{{ route('proposals.index', $proposals) }}"> Entra al foro</a>
+      </div>
 
         <div class="section-title">
           <h2>Bienvenido al <span>apartado </span> "FORO"</h2>
