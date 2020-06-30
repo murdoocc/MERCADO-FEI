@@ -108,4 +108,18 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')
                         ->with('success','Category deleted successfully');
     }
+
+    public function storeadmin(Request $request)
+    {
+        $request->validate([
+            'categoria' => 'required',
+            'sub_uno' => 'required',
+            'sub_dos',
+            'descripcion' => 'required',
+        ]); 
+
+        Category::create($request->all());   
+
+        return redirect()->route('admin.categories')->with('success','Category created successfully.');
+    }
 }

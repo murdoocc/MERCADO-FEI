@@ -34,7 +34,7 @@ body {
 	background: #fff;
 	padding: 20px 25px;
 	border-radius: 3px;
-	min-width: 1500px;
+	min-width: 1000px;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .table-title {        
@@ -282,30 +282,30 @@ $(document).ready(function(){
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="{{ route('admin.home') }}">Emprendedores <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ route('admin.categories') }}">Categorias <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.products') }}">Productos</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.categories') }}">Categorias</a>
-      </li>
-	  <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.proposes') }}">Propuestas</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.home') }}">Emprendedores</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.products') }}">Productos</a>
       </li>
     </ul>
   </div>
 </nav>	
-<div class="container-fluid">
+<div class="container-xl">
 	<div class="table-responsive">
 		<div class="table-wrapper">
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Administrar <b>Emprendedores</b></h2>
+						<h2>Administrar <b>Categorias de productos</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar emprendedor</span></a>
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar categoria</span></a>
 						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
 					</div>
 				</div>
@@ -319,23 +319,16 @@ $(document).ready(function(){
 								<label for="selectAll"></label>
 							</span>
 						</th>
-						<th>Imagen</th>
 						<th>Id</th>
-						<th>Nombre</th>
-						<th>Apellido paterno</th>
-						<th>Apellido materno</th>
-						<th>Email</th>
-						<th>Contraseña</th>
-						<th>Alias</th>
-						<th>Telefono</th>
-                        <th>Carrera</th>
-						<th>Ubicación</th>
-						<th>Estado</th>
+						<th>Categoria</th>
+						<th>Sub categoria 1</th>
+						<th>Sub categoria 2</th>
+						<th>Descripción</th>
 						<th>Funciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($users as $user)
+					@foreach ($categories as $categorie)
 					<tr>
 						<td>
 							<span class="custom-checkbox">
@@ -343,37 +336,22 @@ $(document).ready(function(){
 								<label for="checkbox1"></label>
 							</span>
 						</td>
-						<td>@php 
-								$image = imagecreatefromstring($user->user_image); 
-								ob_start(); 
-								imagejpeg($image, null, 80); 
-								$data = ob_get_contents(); 
-								ob_end_clean(); 
-								echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="75" height="75" style= "border-radius: 50%;"/>';   
-							@endphp  
-						</td>
-						<td id="{{ $user->id }}">{{ $user->id }}</td>	
-						<td>{{ $user->name }}</td>
-						<td>{{ $user->apellido_p }}</td>
-						<td>{{ $user->apellido_m }}</td>
-						<td>{{ $user->email }}</td>
-						<td>********</td>
-						<td>{{ $user->alias }}</td>
-						<td>{{ $user->number_tel }}</td>
-						<td>{{ $user->carrera }}</td>
-						<td>{{ $user->ubicacion }}</td>
-						<td>{{ $user->estatus }}</td>
+						<td id="{{ $categorie->id }}">{{ $categorie->id }}</td>	
+						<td>{{ $categorie->categoria }}</td>
+						<td>{{ $categorie->sub_uno }}</td>
+						<td>{{ $categorie->sub_dos }}</td>
+						<td>{{ $categorie->descripcion }}</td>
 						<td>
 						@php
-							$i = $user->id
+							$i = $categorie->id
 						@endphp
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#editEmployeeModal">
-      						<input type="text" id="id{{$i}}" value="{{ $user->id }}" hidden/>
-      						<input type="button" class="btn btn-warning btn-lg btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}});"/>
+      						<input type="text" id="id{{$i}}" value="{{ $categorie->id }}" hidden/>
+      						<input type="button" class="btn btn-warning" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}});"/>
    						</form>
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
-      						<input type="text" id="id{{$i}}" value="{{ $user->id }}" hidden/>
-      						<input type="button" class="btn btn-danger btn-lg btn-block" id="button1" name="enviar" value="Eliminar" onclick="recibir({{$i}});"/>
+      						<input type="text" id="id{{$i}}" value="{{ $categorie->id }}" hidden/>
+      						<input type="button" class="btn btn-danger" id="button1" name="enviar" value="Eliminar" onclick="recibir({{$i}});"/>
    						</form>				
 						</td>
 					</tr>
@@ -399,16 +377,16 @@ $(document).ready(function(){
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="POST" action="{{ route('admin.create') }}" enctype="multipart/form-data">
+			<form method="POST" action="{{ route('admin.createcategorie') }}">
 			@csrf
 				<div class="modal-header">						
-					<h4 class="modal-title">Agregar emprendedor</h4>
+					<h4 class="modal-title">Agregar categoria</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Nombre</label>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						<label>Categoria</label>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="categoria" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -416,8 +394,8 @@ $(document).ready(function(){
                         @enderror
 					</div>
 					<div class="form-group">
-						<label>Apellido paterno</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_p" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						<label>Sub categoria 1</label>
+						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="sub_uno" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -425,8 +403,8 @@ $(document).ready(function(){
                         @enderror
 					</div>
 					<div class="form-group">
-						<label>Apellido materno</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_m" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						<label>Sub categoria 2</label>
+						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="sub_dos" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -434,59 +412,14 @@ $(document).ready(function(){
                         @enderror
 					</div>
 					<div class="form-group">
-						<label>Email</label>
-						<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-						@error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>
-					<div class="form-group">
-						<label>Password</label>
-						<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-						@error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-						@enderror
-					</div>
-					<div class="form-group">
-						<label>Alias</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="alias" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						<label>Descripción</label>
+						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="descripcion" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-					</div>
-					<div class="form-group">
-						<label>Número de telefono</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="number_tel" value="{{ old('name') }}" required autocomplete="name" autofocus>
-						@error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>
-					<div class="form-group">
-						<label>Carrera</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="carrera" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>		
-					<div class="form-group">
-						<label>Imágen de perfil</label>
-						<input id="name" type="file" class="form-control @error('name') is-invalid @enderror" name="user_image" value="{{ old('name') }}" required autocomplete="name" autofocus multiple>
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-					</div>															
+					</div>	
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

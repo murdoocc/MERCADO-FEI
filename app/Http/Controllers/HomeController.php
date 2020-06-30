@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 //use ProductController;
 use App\Product;
 use App\User;
+use App\Category;
 
 class HomeController extends Controller
 {
@@ -39,6 +40,27 @@ class HomeController extends Controller
         $products = Product::latest()->paginate(10);
         $users = User::latest()->paginate(5);
         return view('adminHome',compact('products', 'users'))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+    public function adminproducts()
+    {
+        $products = Product::latest()->paginate(10);
+        $users = User::latest()->paginate(5);
+        return view('adminproducts',compact('products', 'users'))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function admincategories()
+    {
+        $categories = Category::latest()->paginate(10);
+        return view('admincategories',compact('categories'))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function adminproposes()
+    {
+        $proposes = Proposal::latest()->paginate(10);
+        return view('adminproposes',compact('proposes'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }

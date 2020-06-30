@@ -37,11 +37,19 @@ Route::resource('users','UserController');
 
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 
+Route::get('admin/products', 'HomeController@adminproducts')->name('admin.products')->middleware('is_admin');
+
+Route::get('admin/categories', 'HomeController@admincategories')->name('admin.categories')->middleware('is_admin');
+
+Route::get('admin/proposes', 'HomeController@adminproposes')->name('admin.proposes')->middleware('is_admin');
+
 Route::put('update','UserController@update2')->name('admin.update');
 
 Route::post('create','UserController@create')->name('admin.create');
 
 Route::delete('destroy','UserController@destroy')->name('admin.destroy');
+
+Route::post('createcategorie','CategoryController@storeadmin')->name('admin.createcategorie');
 
 //Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
