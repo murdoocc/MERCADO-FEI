@@ -15,11 +15,17 @@
 		function recibir(numero)
 		{
 			var valor = document.getElementById("id"+numero).value;
-			document.getElementById("id2").value=valor;
-			var valor2 = document.getElementById("id"+numero).value;
-			document.getElementById("id3").value=valor2;        
+			document.getElementById("id2").value=valor;   
 		} 
-	</script>
+</script>
+<script>
+		function recibir2(numero)
+		{
+			var valor2 = document.getElementById("idid"+numero).value;
+			document.getElementById("ide2").value=valor2;        
+		} 
+</script>
+
 <style>
 body {
 	color: #566787;
@@ -372,8 +378,8 @@ $(document).ready(function(){
       						<input type="button" class="btn btn-warning btn-lg btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}});"/>
    						</form>
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
-      						<input type="text" id="id{{$i}}" value="{{ $user->id }}" hidden/>
-      						<input type="button" class="btn btn-danger btn-lg btn-block" id="button1" name="enviar" value="Eliminar" onclick="recibir({{$i}});"/>
+      						<input type="text" id="idid{{$i}}" value="{{ $user->id }}" hidden/>
+      						<input type="button" class="btn btn-danger btn-lg btn-block" id="button1" name="enviar" value="Eliminar" onclick="recibir2({{$i}});"/>
    						</form>				
 						</td>
 					</tr>
@@ -508,14 +514,8 @@ $(document).ready(function(){
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
-						<label>Id</label>
-						<input id="id2" type="text" class="form-control @error('name') is-invalid @enderror" name="ide" required autocomplete="name">
-						@error('name')
-                        <span class="invalid-feedback" role="alert">
-                        	<strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+				<div class="form-group">
+						<label>Id: <input id="id2" type="text" name="ide" style="border:0; width:15px;"></label>
 					</div>					
 					<div class="form-group">
 						<label>Nombre</label>
@@ -632,22 +632,17 @@ $(document).ready(function(){
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="{{ route('admin.destroy')}}" method="POST">
+		<form action="{{ route('admin.destroy2')}}" method="POST">
 			@csrf
             @method('DELETE')
 				<div class="modal-header">						
-					<h4 class="modal-title">Delete Employee</h4>
+					<h4 class="modal-title">Eliminar emprendedor</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="form-group">
-						<label>Id</label>
-						<input id="id3" type="text" class="form-control @error('name') is-invalid @enderror" name="ide" required autocomplete="name">
-						@error('name')
-                        <span class="invalid-feedback" role="alert">
-                        	<strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-					</div>
+				<div class="modal-body">					
+					<p>¿Estas seguro de querer eliminar a el emprendedor con el id <input id="ide2" type="text" name="ide" style="border:0; width:15px;">?</p>
+					<p class="text-warning"><small>Esta acción no podra ser revertida.</small></p>
+				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="submit" class="btn btn-danger" value="Delete">

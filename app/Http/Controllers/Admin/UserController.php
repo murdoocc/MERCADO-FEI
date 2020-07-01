@@ -127,4 +127,11 @@ class UserController extends Controller
         return redirect()->route('welcome')
                         ->with('success','User deleted successfully');
     }
+    public function admindestroy(Request $request)
+    {
+        $user = User::find($request->ide);
+        $user->delete();
+        return redirect()->route('admin.home')
+                        ->with('success','User deleted successfully');
+    }
 }

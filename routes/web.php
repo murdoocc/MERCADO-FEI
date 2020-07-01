@@ -67,6 +67,8 @@ Route::post('updatepropose','ProposalController@adminupdate')->name('admin.updat
 
 Route::delete('deletepropose','ProposalController@admindestroy')->name('admin.deletepropose');
 
+Route::delete('destroy','UserController@admindestroy')->name('admin.destroy2');
+
 
 //Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
