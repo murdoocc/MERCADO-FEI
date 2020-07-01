@@ -136,8 +136,8 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Why choose <span>Our Restaurant</span></h2>
-          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+          <h2>¿Porque escoger a <span>nuestros emprendedores?</span></h2>
+          <p>Aqui unas razones</p>
         </div>
 
         <div class="row">
@@ -145,24 +145,24 @@
           <div class="col-lg-4">
             <div class="box">
               <span>01</span>
-              <h4>Lorem Ipsum</h4>
-              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+              <h4>Apoyar a los estudiantes a seguir con sus estudios.</h4>
+              <p>Muchos estudiantes no tienen la oportuinidad de avanzar en sus estudios debido a que no tienen los recursos economicos para poder inscribirse o asistir a la universidad.</p>
             </div>
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box">
               <span>02</span>
-              <h4>Repellat Nihil</h4>
-              <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+              <h4>Calidad y entrega inmediata de los productos.</h4>
+              <p>Ya que la mayoria de los consumidores son de la facultad existe una mejor comunicación y referencias respecto a los emprendedores y sus productos.</p>
             </div>
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box">
               <span>03</span>
-              <h4> Ad ad velit qui</h4>
-              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+              <h4> Buen trato</h4>
+              <p>Más alla de vender, los emprendedores de la FEI se caracterizan por generar amistad y socializar con todo tipo de personas.</p>
             </div>
           </div>
 
@@ -171,7 +171,7 @@
       </div>
     </section><!-- End Whu Us Section -->
 
-    <!-- ======= Menu Section ======= -->
+    <!-- ======= Menu Section =======
     <section id="menu" class="menu">
       <div class="container">
 
@@ -276,9 +276,9 @@
         </div>
 
       </div>
-    </section><!-- End Menu Section -->
+    </section> End Menu Section -->
 
-    <!-- ======= Specials Section ======= -->
+    <!-- ======= Specials Section =======
     <section id="specials" class="specials">
       <div class="container">
 
@@ -374,19 +374,19 @@
         </div>
 
       </div>
-    </section><!-- End Specials Section -->
+    </section> End Specials Section -->
 
     <!-- ======= Events Section ======= -->
     <section id="events" class="events">
         @yield('events');
     </section><!-- End Events Section -->
 
-    <!-- ======= Book A Table Section ======= -->
+    <!-- ======= Book A Table Section
     <section id="book-a-table" class="book-a-table">
       <div class="container">
 
         <div class="section-title">
-          <h2>Book a <span>Table</span></h2>
+          <h2>Reserva un <span>producto</span></h2>
           <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
         </div>
 
@@ -430,7 +430,7 @@
         </form>
 
       </div>
-    </section><!-- End Book A Table Section -->
+    </section>End Book A Table Section -->
 
     
 
@@ -451,11 +451,11 @@
       <div class="container">
 
         <div class="owl-carousel testimonials-carousel">
-
+          
           <div class="testimonial-item">
-            <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-            <h3>Saul Goodman</h3>
-            <h4>Ceo &amp; Founder</h4>
+            <img src="assets/img/testimonials/pablo.jpg" class="testimonial-img" alt="" width="80" height="100" style= "border-radius: 50%;">
+            <h3>Luis Pablo Reyes Fernández</h3>
+            <h4>Desarrollador &amp; Emprendedor</h4>
             <div class="stars">
               <i class="icofont-star"></i>
               <i class="icofont-star"></i>
@@ -465,15 +465,15 @@
             </div>
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+              "Imposible es solo una palabra usada por hombres pequeños que encuentran más fácil vivir en el mundo que se les ha dado que explorar el poder que tienen para cambiarlo. Imposible no es un hecho. Es una opinión. Imposible es potencial. Imposible es temporal. Lo imposible no es nada". - Muhammad Ali, American professional boxer.
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
           </div>
 
           <div class="testimonial-item">
-            <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-            <h3>Sara Wilsson</h3>
-            <h4>Designer</h4>
+            <img src="assets/img/testimonials/juan.jpg" class="testimonial-img" alt="" width="80" height="100" style= "border-radius: 50%;">
+            <h3>Juan Jose Guzman Landa</h3>
+            <h4>Desarrollador &amp; Emprendedor</h4>
             <div class="stars">
               <i class="icofont-star"></i>
               <i class="icofont-star"></i>
@@ -483,15 +483,15 @@
             </div>
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+              "Un hombre puede hacer lo que quiere, pero no puede querer lo que quiere". -Arthur Schopenhauer
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
           </div>
 
           <div class="testimonial-item">
-            <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-            <h3>Jena Karlis</h3>
-            <h4>Store Owner</h4>
+            <img src="assets/img/testimonials/reyna.jpeg" class="testimonial-img" alt="" width="80" height="100" style= "border-radius: 50%;">
+            <h3>Reyna</h3>
+            <h4>Desarrolladora &amp; Idiomas</h4>
             <div class="stars">
               <i class="icofont-star"></i>
               <i class="icofont-star"></i>
@@ -501,43 +501,7 @@
             </div>
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-            <h3>Matt Brandon</h3>
-            <h4>Freelancer</h4>
-            <div class="stars">
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-            </div>
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-            <h3>John Larson</h3>
-            <h4>Entrepreneur</h4>
-            <div class="stars">
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-            </div>
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+              "never start a business just to 'make money'. start a business to make a difference." -Marie Forleo
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
           </div>
@@ -545,20 +509,21 @@
         </div>
 
       </div>
-    </section><!-- End Testimonials Section -->
+    </section>
+    <!-- End Testimonials Section -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
 
         <div class="section-title">
-          <h2><span>Contact</span> Us</h2>
-          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+          <h2><span>Contactanos</span></h2>
+          <p>La facultad de Estadistica e Informática es una institución en la que existen muchos emprendedores, puedes visitarnos o contactar con nuestros emprendedores, estamos a tu servicio :)</p>
         </div>
       </div>
 
       <div class="map">
-        <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3760.0099253040803!2d-96.9294403854427!3d19.541187442263805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85db2e04915d65cf%3A0xbcc3a83d5b069679!2sFaculty%20of%20Statistics%20and%20Informatics!5e0!3m2!1sen!2smx!4v1593611297324!5m2!1sen!2smx" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
       </div>
 
       <div class="container mt-5">
@@ -567,26 +532,26 @@
           <div class="row">
             <div class="col-lg-3 col-md-6 info">
               <i class="icofont-google-map"></i>
-              <h4>Location:</h4>
-              <p>A108 Adam Street<br>New York, NY 535022</p>
+              <h4>Localización:</h4>
+              <p>Av. Xalapa, Obrero Campesino, 91020t<br>Xalapa-Enríquez, Ver.</p>
             </div>
 
             <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
               <i class="icofont-clock-time icofont-rotate-90"></i>
-              <h4>Open Hours:</h4>
-              <p>Monday-Saturday:<br>11:00 AM - 2300 PM</p>
+              <h4>Horario de atención:</h4>
+              <p>Lunes-Viernes:<br>07:00 AM - 10:00 PM</p>
             </div>
 
             <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
               <i class="icofont-envelope"></i>
-              <h4>Email:</h4>
-              <p>info@example.com<br>contact@example.com</p>
+              <h4>Correo:</h4>
+              <p>lpanonymous0101@gmail.com<br>murdoocc7@gmail.com</p>
             </div>
 
             <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
               <i class="icofont-phone"></i>
-              <h4>Call:</h4>
-              <p>+1 5589 55488 51<br>+1 5589 22475 14</p>
+              <h4>Llamanos al:</h4>
+              <p>2282226204<br>2281590882</p>
             </div>
           </div>
         </div>
@@ -594,28 +559,28 @@
         <form action="forms/contact.php" method="post" role="form" class="php-email-form">
           <div class="form-row">
             <div class="col-md-6 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+              <input type="text" name="name" class="form-control" id="name" placeholder="Tu nombre" data-rule="minlen:4" data-msg="Porfavor ingresa un nombre con minimo cuatro caracteres" />
               <div class="validate"></div>
             </div>
             <div class="col-md-6 form-group">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+              <input type="email" class="form-control" name="email" id="email" placeholder="Tu correo" data-rule="email" data-msg="Porfavor ingresa un correo valido" />
               <div class="validate"></div>
             </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Motivo" data-rule="minlen:4" data-msg="Por favor ingresa un motivo de minimo ocho caracteres" />
             <div class="validate"></div>
           </div>
           <div class="form-group">
-            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Porfavor escribe un mensaje sobre nosotros" placeholder="Mensaje"></textarea>
             <div class="validate"></div>
           </div>
           <div class="mb-3">
-            <div class="loading">Loading</div>
+            <div class="loading">Cargando</div>
             <div class="error-message"></div>
-            <div class="sent-message">Your message has been sent. Thank you!</div>
+            <div class="sent-message">Tu mensaje a sido enviado. Gracias!</div>
           </div>
-          <div class="text-center"><button type="submit">Send Message</button></div>
+          <div class="text-center"><button type="submit">Enviar mensaje</button></div>
         </form>
 
       </div>
@@ -626,8 +591,8 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container">
-      <h3>Delicious</h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+      <h3>MercadoFei</h3>
+      <p>“El ingrediente más importante es levantarte y hacer algo. Así de simple. Muchas personas tienen ideas, pero solo algunas deciden hacer algo hoy. No mañana. No la siguiente semana. Sino hoy. El verdadero emprendedor actúa en lugar de soñar” - Nolan Bushnell, emprendedor.</p>
       <div class="social-links">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -636,14 +601,14 @@
         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
       <div class="copyright">
-        &copy; Copyright <strong><span>Delicious</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>MercadoFei</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/delicious-free-restaurant-bootstrap-theme/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Diseñado por <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
   </footer><!-- End Footer -->

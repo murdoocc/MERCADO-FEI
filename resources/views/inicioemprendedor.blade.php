@@ -26,7 +26,6 @@
 
 @section('misdatos')
 <div class="row">
-
           <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("");'>
               @php 
                 $image = imagecreatefromstring(Auth::user()->user_image); 
@@ -40,7 +39,7 @@
           </div>
 
           <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
-
+          <h2><span>Mis datos</span></h2>
           <div class="card-body">
                     <form method="POST" action="{{ route('users.update', Auth::user()->id) }}" enctype="multipart/form-data">
                         @csrf
@@ -381,5 +380,7 @@
     </div>
 
 @endsection
+
+
 
 
