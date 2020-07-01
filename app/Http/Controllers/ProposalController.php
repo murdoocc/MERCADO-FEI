@@ -128,4 +128,52 @@ class ProposalController extends Controller
                         ->with('success','Proposal deleted successfully');
 
     }
+
+    public function adminstore(Request $request)
+    {
+        $request->validate([
+            'alias_emprendedor' => 'required',
+            'nombre_propuesta' => 'required',
+            'detalle' => 'required',
+            'categoria' => 'required',
+            //'votos' => 'required',
+        ]);
+  
+        Proposal::create(
+            [
+                'alias_emprendedor' => $request->input('alias_emprendedor'),                
+                'nombre_propuesta' => $request->input('nombre_propuesta'),                
+                'detalle' => $request->input('detalle'),
+                'categoria' => $request->input('categoria'),
+            ]);  
+   
+        return redirect()->route('admin.proposes')
+                        ->with('success','Proposal created successfully.');
+
+    }
+    public function adminupdate(Request $request)
+    {
+        $request->validate([
+            'alias_emprendedor' => 'required',
+            'nombre_propuesta' => 'required',
+            'detalle' => 'required',
+            'categoria' => 'required',
+            //'votos' => 'required',
+        ]);
+        $propose = Proposal::find($request->idp);
+        $propose->alias_emprendedor = $request->alias_emprendedor;
+        $propose->nombre_propuesta = $request->nombre_propuesta;
+        $propose->detalle = $request->detalle;
+        $propose->categoria = $request->categoria;
+        $propose->save(); 
+        return redirect()->route('admin.proposes')
+                        ->with('success','Category updated successfully');
+    }
+    public function admindestroy(Request $request)
+    {
+        $propose = Proposal::find($request->idp);
+        $propose->delete();
+        return redirect()->route('admin.proposes')
+                        ->with('success','Category deleted successfully');
+    }
 }

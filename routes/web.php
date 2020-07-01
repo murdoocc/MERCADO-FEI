@@ -61,6 +61,13 @@ Route::post('updateproduct','ProductController@adminupdate')->name('admin.update
 
 Route::delete('deleteproduct','ProductController@admindestroy')->name('admin.deleteproduct');
 
+Route::post('createpropose','ProposalController@adminstore')->name('admin.createpropose');
+
+Route::post('updatepropose','ProposalController@adminupdate')->name('admin.updatepropose');
+
+Route::delete('deletepropose','ProposalController@admindestroy')->name('admin.deletepropose');
+
+
 //Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 //Route::get('store_image/fetch_image/{id}', 'StoreImageController@fetch_image');

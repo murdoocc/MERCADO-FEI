@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\User;
 use App\Category;
+use App\Proposal;
 
 class HomeController extends Controller
 {
