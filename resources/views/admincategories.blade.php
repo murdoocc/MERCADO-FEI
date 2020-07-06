@@ -359,11 +359,11 @@ $(document).ready(function(){
 							$descripcion = $category->descripcion;
 						@endphp
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#editEmployeeModal">
-      						<input type="button" class="btn btn-warning" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$categoria}}', '{{$sub_uno}}', '{{$sub_dos}}', '{{$descripcion}}');"/>
+      						<input type="button" class="btn btn-warning btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$categoria}}', '{{$sub_uno}}', '{{$sub_dos}}', '{{$descripcion}}');"/>
    						</form>
 						<form id="formulario2" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
       						<input type="number" id="idid{{$i}}" value="{{ $category->id }}" hidden/>
-      						<input type="button" class="btn btn-danger" id="button2" name="enviar2" value="Eliminar" onclick="recibir2({{$i}});"/>
+      						<input type="button" class="btn btn-danger btn-block" id="button2" name="enviar2" value="Eliminar" onclick="recibir2({{$i}});"/>
    						</form>				
 						</td>
 					</tr>
@@ -413,7 +413,7 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Descripción</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="descripcion" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="descripcion"  maxlength="200" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

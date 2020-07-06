@@ -598,14 +598,14 @@
               <p class="font-italic">
                 Conoce algunos de nuestros productos
               </p>
-              <ul>
-              @php
+              <ul>          
+              @if(count($products) > 0)
                 for($i = 0; $i < 5; $i++){
                   $cant = count($products) - 1;
                   $rand = rand(0, $cant);
                   echo "<li><i class='icofont-check-circled'></i>". $i.".-". $products[$rand]->nombre .".</li>";
-                }   
-              @endphp                
+                }
+              @endif
               </ul>     
             </div>
           </div>

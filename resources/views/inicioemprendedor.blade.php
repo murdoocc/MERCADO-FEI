@@ -284,7 +284,6 @@
         </div>
 
         <div class="row">
-        @if(!empty($users))
         @foreach ($users as $user)
             @if($user->is_admin == 0)
                 <div class="col-lg-4 col-md-6">
@@ -308,7 +307,7 @@
                 </div>
             @endif
         @endforeach
-        @endif
+        
 
 
         </div>
@@ -360,9 +359,9 @@
             <div class="col-lg-6 pt-4 pt-lg-0 content">
               <h3>Productos actuales</h3>
               <div class="price">
-                @if(!empty($products))
+                @if(empty($products))
                 <p><span>Contamos con un total de count($products)</span></p>
-                @endif
+                
               </div>
               <p class="font-italic">
                 Los productos que ofrecen los emprendedores son de muy buena calidad, garantizan satisfacción a cada uno de sus compradores.
@@ -370,16 +369,14 @@
               <p class="font-italic">
                 Conoce algunos de nuestros productos
               </p>
-              <ul>
-              @php
-              if(!empty($products)){
+              <ul>              
+              
                 for($i = 0; $i < 5; $i++){
                   $cant = count($products) - 1;
                   $rand = rand(0, $cant);
                   echo "<li><i class='icofont-check-circled'></i>". $i.".-". $products[$rand]->nombre .".</li>";
                 }
-              }
-              @endphp                
+              @endif
               </ul>     
             </div>
           </div>

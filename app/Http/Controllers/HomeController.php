@@ -19,8 +19,10 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        //$products = (new ProductController)->index();
+        //$this->middleware('auth');
+        
+        $products = (new ProductController)->index();
+        $users = (new UserController)->index();
     }
 
     /**
@@ -33,7 +35,7 @@ class HomeController extends Controller
         $products = Product::latest()->paginate(10);
         $users = User::latest()->paginate(10);
         return view('inicioemprendedor',compact('products', 'users'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     public function adminHome()

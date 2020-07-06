@@ -17,19 +17,15 @@ class existProductAndCategory
      */
     public function handle($request, Closure $next)
     {
-        $products = Product::latest()->paginate(10);
-        //$categories = Category::latest()->paginate(10);
-        //foreach($categories as $category){
-          //  if(!empty($category)){
-                foreach($products as $product){
-                    if(auth()->user()->id == $product->user_id){
-                        return $next($request);
-                    }
-                    //return redirect('products/create')->with('error',"You don't have products.");
-                }
-            //}
-            return redirect('products/create')->with('error',"You don't have admin access.");
-        //}                    
+        /*$products = Product::latest()->paginate(10);
+            foreach($products as $product){
+                if(auth()->user()->id == $product->user_id){
+                    return $next($request);
+                }                    
+            }            */
+            return $next($request);
+        return redirect('products/create')->with('error',"You don't have admin access.");
+                           
         
     }
 }

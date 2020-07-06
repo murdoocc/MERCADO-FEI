@@ -376,11 +376,11 @@ $(document).ready(function(){
 							$existencia = $product->existencia;
 						@endphp
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#editEmployeeModal">
-      						<input type="button" class="btn btn-warning btn-lg btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$nombre}}',  {{$precio}}, '{{$detalle}}', {{$existencia}}, {{$id_emprendedor}}, {{$id_categoria}});"/>
+      						<input type="button" class="btn btn-warning btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$nombre}}',  {{$precio}}, '{{$detalle}}', {{$existencia}}, {{$id_emprendedor}}, {{$id_categoria}});"/>
    						</form>
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
       						<input type="text" id="idid{{$i}}" value="{{ $product->id }}" hidden/>
-      						<input type="button" class="btn btn-danger btn-lg btn-block" id="button2" name="enviar2" value="Eliminar" onclick="recibir2({{$i}});"/>
+      						<input type="button" class="btn btn-danger btn-block" id="button2" name="enviar2" value="Eliminar" onclick="recibir2({{$i}});"/>
    						</form>				
 						</td>
 					</tr>

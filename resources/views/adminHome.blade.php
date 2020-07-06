@@ -390,12 +390,12 @@ $(document).ready(function(){
 							$ubicacion = $user->ubicacion;
 						@endphp
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#editEmployeeModal">
-      						<input type="button" class="btn btn-warning btn-lg btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$nombre}}', '{{ $user->apellido_p }}', '{{ $user->apellido_m }}', '{{ $user->email }}', '{{$alias}}', '{{$number_tel}}', '{{$carrera}}', '{{$ubicacion}}');"/>
+      						<input type="button" class="btn btn-warning btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$nombre}}', '{{ $user->apellido_p }}', '{{ $user->apellido_m }}', '{{ $user->email }}', '{{$alias}}', '{{$number_tel}}', '{{$carrera}}', '{{$ubicacion}}');"/>
 							  																										
    						</form>
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
       						<input type="text" id="idid{{$i}}" value="{{ $user->id }}" hidden/>
-      						<input type="button" class="btn btn-danger btn-lg btn-block" id="button1" name="enviar" value="Eliminar" onclick="recibir2({{$i}});"/>
+      						<input type="button" class="btn btn-danger btn-block" id="button1" name="enviar" value="Eliminar" onclick="recibir2({{$i}});"/>
    						</form>				
 						</td>
 					</tr>
