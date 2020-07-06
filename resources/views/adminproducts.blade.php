@@ -12,13 +12,14 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
-		function recibir(numero, nombre, precio, detalle, existencia, id_emprendedor, id_categoria)
+		function recibir(numero, nombre, precio, detalle, existencia, alias_emprendedor, id_emprendedor, id_categoria)
 		{
 			document.f1.idp.value = numero;
 			document.f1.nombre.value = nombre;
 			document.f1.precio.value = precio;
 			document.f1.detalle.value = detalle;
 			document.f1.existencia.value = existencia;
+			document.f1.alias_emprendedor.value = alias_emprendedor;
 			document.f1.id_emprendedor.value = id_emprendedor;
 			document.f1.id_categoria.value = id_categoria;
 		}
@@ -367,8 +368,9 @@ $(document).ready(function(){
 						<td>{{ $product->existencia }}</td>
 						<td>
 						@php
-							$i = $product->id;							
-							$id_emprendedor = $product->user_id;
+							$i = $product->id;
+							$id_emprendedor = $product->user_id;					
+							$alias_emprendedor = $product->alias_emprendedor;
 							$id_categoria = $product->category_id;
 							$nombre = $product->nombre;
 							$precio = $product->precio;
@@ -376,7 +378,7 @@ $(document).ready(function(){
 							$existencia = $product->existencia;
 						@endphp
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#editEmployeeModal">
-      						<input type="button" class="btn btn-warning btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$nombre}}',  {{$precio}}, '{{$detalle}}', {{$existencia}}, {{$id_emprendedor}}, {{$id_categoria}});"/>
+      						<input type="button" class="btn btn-warning btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$nombre}}',  {{$precio}}, '{{$detalle}}', {{$existencia}}, '{{$alias_emprendedor}}', {{$id_emprendedor}}, {{$id_categoria}});"/>
    						</form>
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
       						<input type="text" id="idid{{$i}}" value="{{ $product->id }}" hidden/>
@@ -431,6 +433,22 @@ $(document).ready(function(){
 					<div class="form-group">
 						<label>Existencia</label>
                         <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="existencia" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						@error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
+					<div class="form-group">
+						<label>Emprendedor</label>
+                        <select id='alias_emprendedor' name='alias_emprendedor' class='form-control'>";
+							<option selected>Selecciona a un emprendedor</option>                        
+							@foreach ($users as $user)
+								@if($user->is_admin==0){								
+									<option>{{ $user->alias }}</option>
+								@endif
+							@endforeach
+						</select>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -536,6 +554,15 @@ $(document).ready(function(){
 					<div class="form-group">
 						<label>Existencia</label>
                         <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="existencia" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						@error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
+					<div class="form-group">
+						<label>Alias del emprendedor</label>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="alias_emprendedor" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

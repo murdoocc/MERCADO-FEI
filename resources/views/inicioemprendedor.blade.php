@@ -236,7 +236,7 @@
             
             @if(!empty($products))
             @foreach ($products as $product)
-                @if(auth()->user()->id == $product->user_id)
+                @if(auth()->user()->alias == $product->alias_emprendedor)
                 <div class="col-lg-4 col-md-2">
                     <div class='card'>
                         <div class='gallery-item'>
@@ -256,10 +256,10 @@
                         </div>      
                         <div class='card-footer'>
                             <form action="{{ route('products.destroy',$product->id) }}" method="POST">
-                            <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Editar</a>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                         </div>
                     </div>

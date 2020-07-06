@@ -95,6 +95,7 @@ class ProductController extends Controller
         [
             'user_id' => $request->input('user_id'),
             'category_id' => $tok,
+            'alias_emprendedor' => $request->input('alias_emprendedor'),
             'nombre' => $request->input('nombre'),
             'precio' => $request->input('precio'),
             'detalle' => $request->input('detalle'),
@@ -199,6 +200,7 @@ class ProductController extends Controller
         [
             'user_id' => $request->input('id_emprendedor'),
             'category_id' => $tok,
+            'alias_emprendedor' => $request->input('alias_emprendedor'),
             'nombre' => $request->input('nombre'),
             'precio' => $request->input('precio'),
             'detalle' => $request->input('detalle'),
@@ -232,6 +234,7 @@ class ProductController extends Controller
             $product = Product::find($request->idp);
             $product->user_id = $request->id_emprendedor;
             $product->category_id = $request->id_categoria;
+            $product->alias_emprendedor = $request->alias_emprendedor;
             $product->nombre = $request->nombre;
             $product->precio = $request->precio;
             $product->detalle = $request->detalle;

@@ -480,8 +480,8 @@
                     <div class='card-footer'>
                     @php
                       foreach ($users as $user){
-                        if($user->id == $product->user_id ){
-                          echo "<h4>Elaborado por ". $user->name ."</h4>";
+                        if($user->alias == $product->alias_emprendedor ){
+                          echo "<h4>Elaborado por ". $user->alias ."</h4>";
                         }                        
                       }   
                     @endphp                       

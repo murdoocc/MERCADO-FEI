@@ -17,13 +17,12 @@ class existProductAndCategory
      */
     public function handle($request, Closure $next)
     {
-        /*$products = Product::latest()->paginate(10);
+        $products = Product::latest()->paginate(10);
             foreach($products as $product){
-                if(auth()->user()->id == $product->user_id){
+                if(auth()->user()->alias == $product->alias_emprendedor){
                     return $next($request);
                 }                    
-            }            */
-            return $next($request);
+            }            
         return redirect('products/create')->with('error',"You don't have admin access.");
                            
         
