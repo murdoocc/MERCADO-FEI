@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Image;
 class CreateUsersSeeder extends Seeder
 {
     /**
@@ -11,17 +12,17 @@ class CreateUsersSeeder extends Seeder
      */
     public function run()
     {
-        /*$user = [
-            [
-               'name'=>'Admin',
-               'email'=>'anonymous0101@gmail.com',
-                'is_admin'=>'1',
-               'password'=> bcrypt('MrRobot'),
-            ],
-        ];*/
+        $image = Image::make($image_file);
+        User::create ([            
+            'name'=>'Admin',
+            'email'=>'anonymous0101@gmail.com',
+            'is_admin'=>'1',
+            'password'=> bcrypt('MrRobot'),
+            'user_image' => $image
+        ]);
   
-        foreach ($user as $key => $value) {
+        /*foreach ($user as $key => $value) {
             User::create($value);
-        }
+        }*/
     }
 }

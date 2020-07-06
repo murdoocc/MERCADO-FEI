@@ -41,14 +41,14 @@
                                 echo "<td> $proposal->nombre_propuesta </td>";
                                 echo "<td> $proposal->detalle </td>";
                         echo "<td>";
-                                echo "<form action=". route('proposals.destroy',$proposal->id) . "method='POST'>";
+                                echo "<form action="{{ route('admin.deletepropose')}}" method="POST">";
                 
                                     //<!--<a class='btn btn-info' href='{{ route('proposals.show',$proposal->id) }}'>Show</a>
                     
                                     //<a class='btn btn-primary' href='{{ route('proposals.edit',$proposal->id) }}'>Edit</a>-->
                 
-                                    //csrf
-                                    //method('DELETE');
+                                    csrf
+                                    method('DELETE');
                     
                                 echo "<button type='submit' class='btn btn-danger'>Eliminar propuesta</button>";
                             echo "</form>";
@@ -63,15 +63,15 @@
                     echo " <div class='col-lg-12 margin-tb'>";
                         echo "<div class='pull-left'>";
                             echo "<h2 class='col-xs-12 col-sm-12 col-md-12 text-center'>Bienvenido al FORO</h2>";
-                                echo "</div>";
-                        echo "<div class='pull-right'>";                            
                         echo "</div>";
-                    echo "</div>";
                         echo " <div class='col-lg-4 margin-tb'>";                
                         echo "<div class='pull-right'>";
                             echo "<a href=" . route('welcome') . " class='btn btn-success col-xs-12 col-sm-12 col-md-8 text-center'>Volver</a>";
                         echo "</div>";
                     echo "</div>";
+                    echo "</div>";                      
+                    
+                        
                 echo "</div>";
             
                 if($message = Session::get('success')){

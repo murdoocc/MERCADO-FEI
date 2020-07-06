@@ -14,7 +14,7 @@
           <li><a href="#chefs">Emprendedores</a></li>
           <li><a href="{{ route('categories.index') }}">Categorias</a></li>
           <li><a href="#gallery">Mis Productos</a></li>
-          <!--<li><a href="#contact">Contact</a></li>-->
+          <li><a href="#contact">Contacto</a></li>
           <li class="book-a-table text-center" ><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Cerrar sesión</a></li>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -234,7 +234,7 @@
 
             <div class='card-deck'>
             
-            
+            @if(!empty($products))
             @foreach ($products as $product)
                 @if(auth()->user()->id == $product->user_id)
                 <div class="col-lg-4 col-md-2">
@@ -264,8 +264,9 @@
                         </div>
                     </div>
                 </div>                
-                @endif                
+                @endif              
             @endforeach
+            @endif
                                 
             </div>                   
             </div>
@@ -283,28 +284,31 @@
         </div>
 
         <div class="row">
+        @if(!empty($users))
         @foreach ($users as $user)
-
-            <div class="col-lg-4 col-md-6">
-                <div class='member'>
-                    <div class='pic'>
-                        @php 
-                        $image = imagecreatefromstring($user->user_image); 
-                        ob_start(); 
-                        imagejpeg($image, null, 80); 
-                        $data = ob_get_contents(); 
-                        ob_end_clean(); 
-                        echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="310" height="300" style="border-radius: 15%;" />';   
-                        @endphp 
-                    </div>      
-                    <div class='member-info'>
-                        <h4>{{ $user->name }} </h4>
-                        <h6 class='card-subtitle mb-2 text-muted'> {{ $user->number_tel }}</h6>
-                        <p class='card-text'> {{ $user->email }} </p>
-                    </div>      
+            @if($user->is_admin == 0)
+                <div class="col-lg-4 col-md-6">
+                    <div class='member'>
+                        <div class='pic'>
+                            @php 
+                            $image = imagecreatefromstring($user->user_image); 
+                            ob_start(); 
+                            imagejpeg($image, null, 80); 
+                            $data = ob_get_contents(); 
+                            ob_end_clean(); 
+                            echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="310" height="300" style="border-radius: 15%;" />';   
+                            @endphp 
+                        </div>      
+                        <div class='member-info'>
+                            <h4>{{ $user->name }} </h4>
+                            <h6 class='card-subtitle mb-2 text-muted'> {{ $user->number_tel }}</h6>
+                            <p class='card-text'> {{ $user->email }} </p>
+                        </div>      
+                    </div>
                 </div>
-            </div>                
+            @endif
         @endforeach
+        @endif
 
 
         </div>
@@ -356,7 +360,9 @@
             <div class="col-lg-6 pt-4 pt-lg-0 content">
               <h3>Productos actuales</h3>
               <div class="price">
-                <p><span>Contamos con un total de {{count($products)}}</span></p>
+                @if(!empty($products))
+                <p><span>Contamos con un total de count($products)</span></p>
+                @endif
               </div>
               <p class="font-italic">
                 Los productos que ofrecen los emprendedores son de muy buena calidad, garantizan satisfacción a cada uno de sus compradores.
@@ -366,11 +372,13 @@
               </p>
               <ul>
               @php
+              if(!empty($products)){
                 for($i = 0; $i < 5; $i++){
                   $cant = count($products) - 1;
                   $rand = rand(0, $cant);
                   echo "<li><i class='icofont-check-circled'></i>". $i.".-". $products[$rand]->nombre .".</li>";
-                }   
+                }
+              }
               @endphp                
               </ul>     
             </div>

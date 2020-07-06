@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('inicioemprendedor');
+Route::get('/home', 'HomeController@index')->name('inicioemprendedor')->middleware('exist_something');
 
 Route::get('/', 'HomeController2@index')->name('welcome');
 

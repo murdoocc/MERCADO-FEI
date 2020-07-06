@@ -292,18 +292,24 @@ $(document).ready(function(){
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<a class="nav-link" href="{{ route('admin.home') }}">Emprendedores <span class="sr-only">(current)</span></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ route('admin.products') }}">Productos</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ route('admin.categories') }}">Categorias</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ route('admin.proposes') }}">Propuestas</a>
-			</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="{{ route('admin.home') }}">Emprendedores <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('admin.products') }}">Productos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('admin.categories') }}">Categorias</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('admin.proposals') }}">Propuestas</a>
+				</li>
+				<li class="nav-item" ><a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); 
+						document.getElementById('logout-form').submit();">Cerrar sesión</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form> 
+				</li>
 			</ul>
 		</div>
 	</nav>
@@ -346,6 +352,7 @@ $(document).ready(function(){
 				</thead>
 				<tbody>
 					@foreach ($users as $user)
+					@if($user->is_admin == 0)
 					<tr>
 						<td>
 							<span class="custom-checkbox">
@@ -392,6 +399,7 @@ $(document).ready(function(){
    						</form>				
 						</td>
 					</tr>
+					@endif
 					@endforeach
 				</tbody>
 			</table>			
@@ -638,7 +646,7 @@ $(document).ready(function(){
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
-					<p>¿Estas seguro de querer eliminar a el emprendedor con el id <input id="ide2" type="text" name="ide" style="border:0; width:15px;">?</p>
+					<p>¿Estas seguro de querer eliminar a el emprendedor con el id <input id="ide2" type="text" name="ide" style="border:0; width:30px;">?</p>
 					<p class="text-warning"><small>Esta acción no podra ser revertida.</small></p>
 				</div>
 				<div class="modal-footer">
