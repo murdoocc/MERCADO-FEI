@@ -66,6 +66,7 @@ Route::post('createpropose','ProposalController@adminstore')->name('admin.create
 Route::post('updatepropose','ProposalController@adminupdate')->name('admin.updatepropose');
 
 Route::delete('deletepropose','ProposalController@admindestroy')->name('admin.deletepropose');
+Route::delete('deletepropose2','ProposalController@admindestroy2')->name('empre.deletepropose');
 
 Route::delete('destroy','UserController@admindestroy')->name('admin.destroy2');
 

@@ -2,110 +2,110 @@
  
 @section('content')
     
-    @php
-    ////////////////////////////////////////PANTALLA DE EMPRENDEDOR/////////////////////////////////////////////
-        if(Auth::user() != null){
-            echo "<div class='row'  style='margin-bottom:2%'>";
-                echo " <div class='col-lg-8 margin-tb'>";                
-                    echo "<div class='pull-left'>";
-                        echo "<h2 class='col-xs-12 col-sm-12 col-md-12 text-center'>Bienvenido al FORO</h2>";
-                    echo "</div>";
-                    echo "<div class='pull-right'>";                        
-                        echo "<a href='#victorModal' role='button'  class='btn btn-large btn-warning col-xs-12 col-sm-12 col-md-4 text-center' data-toggle='modal'>Crear una propuesta</a>";
-                    echo "</div>";
-                echo "</div>";
-                echo " <div class='col-lg-4 margin-tb'>";                
-                    echo "<div class='pull-right'>";
-                        echo "<a href=" . route('inicioemprendedor') . " class='btn btn-success col-xs-12 col-sm-12 col-md-8 text-center'>Volver</a>";
-                    echo "</div>";
-                echo "</div>";
-            echo "</div>";
+    
+    <!--////////////////////////////////////////PANTALLA DE EMPRENDEDOR/////////////////////////////////////////////-->
+        @if(Auth::user() != null)
+            <div class='row'  style='margin-bottom:2%'>
+                 <div class='col-lg-8 margin-tb'>                
+                    <div class='pull-left'>
+                        <h2 class='col-xs-12 col-sm-12 col-md-12 text-center'>Bienvenido al FORO</h2>
+                    </div>
+                    <div class='pull-right'>                        
+                        <a href='#victorModal' role='button'  class='btn btn-large btn-warning col-xs-12 col-sm-12 col-md-4 text-center' data-toggle='modal'>Crear una propuesta</a>
+                    </div>
+                </div>
+                 <div class='col-lg-4 margin-tb'>                
+                    <div class='pull-right'>
+                        <a href=" . route('inicioemprendedor') . " class='btn btn-success col-xs-12 col-sm-12 col-md-8 text-center'>Volver</a>
+                    </div>
+                </div>
+            </div>
         
-            if($message = Session::get('success')){
-                echo "<div class='alert alert-success'>";
-                    echo "<p> $message </p>";
-                echo "</div>";
-            }
+            @if($message = Session::get('success'))
+                <div class='alert alert-success'>
+                    <p> {{ $message }}</p>
+                </div>
+            @endif
         
-            echo "<table class='table table-bordered'>";
-                echo "<tr>";
-                    echo "<th>No</th>";
-                    echo "<th>Nombre del producto</th>";
-                    echo "<th>Detalle</th>";
-                    echo "<th width='280px'>Acción</th>";
-                echo "</tr>";
-                foreach($proposals as $proposal){                    
-                    if(auth()->user()->alias == $proposal->alias_emprendedor){
-                        echo "<tr>";
-                                echo "<td>" . $i++ . "</td>";
-                                echo "<td> $proposal->nombre_propuesta </td>";
-                                echo "<td> $proposal->detalle </td>";
-                        echo "<td>";
-                                echo "<form action="{{ route('admin.deletepropose')}}" method="POST">";
-                
-                                    //<!--<a class='btn btn-info' href='{{ route('proposals.show',$proposal->id) }}'>Show</a>
+            <table class='table table-bordered'>
+                <tr>
+                    <th>No</th>
+                    <th>Nombre del producto</th>
+                    <th>Detalle</th>
+                    <th width='280px'>Acción</th>
+                </tr>
+                @foreach($proposals as $proposal)                
+                    @if(auth()->user()->alias == $proposal->alias_emprendedor)
+                        <tr>
+                                <td> {{ $i++ }} </td>
+                                <td> {{ $proposal->nombre_propuesta }}</td>
+                                <td> {{ $proposal->detalle }} </td>
+                        <td>
+                            <form action="{{ route('empre.deletepropose') }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type='hidden' name='idp' value={{ $proposal->id }}>
+                                    <!--<a class='btn btn-info' href='{{ route('proposals.show',$proposal->id) }}'>Show</a>
                     
                                     //<a class='btn btn-primary' href='{{ route('proposals.edit',$proposal->id) }}'>Edit</a>-->
                 
-                                    csrf
-                                    method('DELETE');
                     
-                                echo "<button type='submit' class='btn btn-danger'>Eliminar propuesta</button>";
-                            echo "</form>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                }
-            echo "</table>";
-////////////////////////////////////////PANTALLA DE COMPRADOR/////////////////////////////////////////////
-        }else{
-                echo "<div class='row'>";
-                    echo " <div class='col-lg-12 margin-tb'>";
-                        echo "<div class='pull-left'>";
-                            echo "<h2 class='col-xs-12 col-sm-12 col-md-12 text-center'>Bienvenido al FORO</h2>";
-                        echo "</div>";
-                        echo " <div class='col-lg-4 margin-tb'>";                
-                        echo "<div class='pull-right'>";
-                            echo "<a href=" . route('welcome') . " class='btn btn-success col-xs-12 col-sm-12 col-md-8 text-center'>Volver</a>";
-                        echo "</div>";
-                    echo "</div>";
-                    echo "</div>";                      
+                                <button type='submit' class='btn btn-danger'>Eliminar propuesta</button>
+                            </form>
+                        </td>
+                        </tr>
+                    @endif
+                @endforeach
+            </table>
+<!--////////////////////////////////////////PANTALLA DE COMPRADOR/////////////////////////////////////////////-->
+        @else
+                <div class='row'>
+                     <div class='col-lg-12 margin-tb'>
+                        <div class='pull-left'>
+                            <h2 class='col-xs-12 col-sm-12 col-md-12 text-center'>Bienvenido al FORO</h2>
+                        </div>
+                         <div class='col-lg-4 margin-tb'>                
+                        <div class='pull-right'>
+                            <a href=" . route('welcome') . " class='btn btn-success col-xs-12 col-sm-12 col-md-8 text-center'>Volver</a>
+                        </div>
+                    </div>
+                    </div>                      
                     
                         
-                echo "</div>";
+                </div>
             
                 if($message = Session::get('success')){
-                    echo "<div class='alert alert-success'>";
-                        echo "<p> $message </p>";
-                    echo "</div>";
+                    <div class='alert alert-success'>
+                        <p> $message </p>
+                    </div>
                 }
             
-                echo "<table class='table table-bordered'>";
-                    echo "<tr>";
-                        echo "<th>No</th>";
-                        echo "<th>Nombre del producto</th>";
-                        echo "<th>Detalle</th>";
-                        echo "<th width='280px'>Elige tu propuesta</th>";
-                    echo "</tr>";
+                <table class='table table-bordered'>
+                    <tr>
+                        <th>No</th>
+                        <th>Nombre del producto</th>
+                        <th>Detalle</th>
+                        <th width='280px'>Elige tu propuesta</th>
+                    </tr>
                     foreach($proposals as $proposal){
-                    echo "<tr>";
-                        echo "<td>" . $i++ . "</td>";
-                        echo "<td> $proposal->nombre_propuesta </td>";
-                        echo "<td> $proposal->detalle </td>";
-                    echo "<td>";
-                            echo "<form action=" . route('proposals.edit',$proposal->id) . " method='PATCH'>";
+                    <tr>
+                        <td>" . $i++ . "</td>
+                        <td> $proposal->nombre_propuesta </td>
+                        <td> $proposal->detalle </td>
+                    <td>
+                            <form action=" . route('proposals.edit',$proposal->id) . " method='PATCH'>
                             $unVoto = $proposal->votos;
                             $unVoto += 1;
-                            echo "<input id='votos' type='hidden' name='votos' value=" . $unVoto . "autofocus>"; 
+                            <input id='votos' type='hidden' name='votos' value=" . $unVoto . "autofocus> 
                 
-                            echo "<button type='submit' class='btn btn-warning'>Votar</button>";
-                        echo "</form>";
-                    echo "</td>";
-                echo "</tr>";
+                            <button type='submit' class='btn btn-warning'>Votar</button>
+                        </form>
+                    </td>
+                </tr>
                     }
-            echo "</table>";
-        }
-    @endphp
+            </table>
+        @endif
+    
     
     
     <!--INICIO DE POP-UP-->    

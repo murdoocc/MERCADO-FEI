@@ -59,7 +59,7 @@ class ProposalController extends Controller
             ]);  
    
         return redirect()->route('proposals.index')
-                        ->with('success','Proposal created successfully.');
+                        ->with('success','Propuesta creada!');
 
     }
 
@@ -99,7 +99,7 @@ class ProposalController extends Controller
         $proposal->update(['votos' => $votos]); 
       
         return redirect()->route('proposals.index')
-                        ->with('success','Proposal updated successfully');
+                        ->with('success','Propuesta actualizada!');
     }
 
     /**
@@ -120,16 +120,17 @@ class ProposalController extends Controller
      * @param  \App\Proposal  $proposal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proposal $proposal)
+    public function destroy(Request $Request)
     {
-        $proposal->delete();
-  
+        
+        $propose = Proposal::find($request->idp);
+        $propose->delete();
         return redirect()->route('proposals.index')
-                        ->with('success','Proposal deleted successfully');
+                        ->with('success','Propuesta borrada!');
 
     }
 
-    public function adminstore(Request $request)
+    public function adminstore(Request $Request)
     {
         $request->validate([
             'alias_emprendedor' => 'required',
@@ -148,7 +149,7 @@ class ProposalController extends Controller
             ]);  
    
         return redirect()->route('admin.proposals')
-                        ->with('success','Proposal created successfully.');
+                        ->with('success','Propuesta creada!.');
 
     }
     public function adminupdate(Request $request)
@@ -167,13 +168,21 @@ class ProposalController extends Controller
         $propose->categoria = $request->categoria;
         $propose->save(); 
         return redirect()->route('admin.proposals')
-                        ->with('success','Category updated successfully');
+                        ->with('success','Propuesta actualizada!');
     }
     public function admindestroy(Request $request)
     {
         $propose = Proposal::find($request->idp);
         $propose->delete();
         return redirect()->route('admin.proposals')
-                        ->with('success','Category deleted successfully');
+                        ->with('success','Propuesta borrada!');
+    }
+
+    public function admindestroy2(Request $request)
+    {
+        $propose = Proposal::find($request->idp);
+        $propose->delete();
+        return redirect()->route('proposals.index')
+                        ->with('success','Propuesta borrada!');
     }
 }
