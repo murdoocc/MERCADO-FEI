@@ -472,7 +472,7 @@
                         <h6 class='card-subtitle mb-2 text-muted price'> {{ $product->precio }}</h6>
                         <p class='card-text'> {{ $product->detalle }} </p>
                         @if($product->estado==1)
-                          <p class='card-text' style="color:green"> En existencia</p>
+                          <p class='card-text' style="color:green"> Disponible - {{ $product->existencia }}</p>                          
                         @else
                           <p class='card-text' style="color:red"> Agotado</p>
                         @endif
