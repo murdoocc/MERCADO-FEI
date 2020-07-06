@@ -49,7 +49,7 @@ class CategoryController extends Controller
 
         Category::create($request->all());   
 
-        return redirect()->route('categories.index')->with('success','Category created successfully.');
+        return redirect()->route('categories.index')->with('success','Categoria Agregada!.');
     }
 
     /**
@@ -93,7 +93,7 @@ class CategoryController extends Controller
         $category->update($request->all());  
 
         return redirect()->route('categories.index')
-                        ->with('success','Category updated successfully');
+                        ->with('success','Categoria Actualizada!');
     }
 
     /**
@@ -106,7 +106,7 @@ class CategoryController extends Controller
     {
         $category->delete();
         return redirect()->route('categories.index')
-                        ->with('success','Category deleted successfully');
+                        ->with('success','Categoria Eliminada!');
     }
 
     public function storeadmin(Request $request)

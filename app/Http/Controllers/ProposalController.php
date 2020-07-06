@@ -147,7 +147,7 @@ class ProposalController extends Controller
                 'categoria' => $request->input('categoria'),
             ]);  
    
-        return redirect()->route('admin.proposes')
+        return redirect()->route('admin.proposals')
                         ->with('success','Proposal created successfully.');
 
     }
@@ -166,14 +166,14 @@ class ProposalController extends Controller
         $propose->detalle = $request->detalle;
         $propose->categoria = $request->categoria;
         $propose->save(); 
-        return redirect()->route('admin.proposes')
+        return redirect()->route('admin.proposals')
                         ->with('success','Category updated successfully');
     }
     public function admindestroy(Request $request)
     {
         $propose = Proposal::find($request->idp);
         $propose->delete();
-        return redirect()->route('admin.proposes')
+        return redirect()->route('admin.proposals')
                         ->with('success','Category deleted successfully');
     }
 }

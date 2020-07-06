@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function index()
     {        
         $products = Product::latest()->paginate(10);
-        $users = User::latest()->paginate(5);
+        $users = User::latest()->paginate(10);
         return view('inicioemprendedor',compact('products', 'users'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -39,14 +39,16 @@ class HomeController extends Controller
     public function adminHome()
     {
         $products = Product::latest()->paginate(10);
-        $users = User::latest()->paginate(5);
-        return view('adminHome',compact('products', 'users'))
+        $users = User::latest()->paginate(10);
+        $categories = Category::latest()->paginate(10);
+        return view('adminHome',compact('products', 'users', 'categories'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function adminproducts()
     {
         $products = Product::latest()->paginate(10);
-        return view('adminproducts',compact('products'))
+        $categories = Category::latest()->paginate(10);
+        return view('adminproducts',compact('products', 'categories'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -57,10 +59,12 @@ class HomeController extends Controller
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function adminproposes()
+    public function adminproposals()
     {
-        $proposes = Proposal::latest()->paginate(10);
-        return view('adminproposes',compact('proposes'))
+        $users = User::latest()->paginate(10);
+        $categories = Category::latest()->paginate(10);
+        $proposals = Proposal::latest()->paginate(10);
+        return view('adminproposals',compact('proposals', 'users', 'categories'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }

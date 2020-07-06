@@ -1,7 +1,7 @@
 @extends('plantillamaestra')
 @section('header')
 <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html"><span>MercadoFei</span></a></h1>
+        <h1 class="text-light"><a href="{{ route('inicioemprendedor') }}"><span>MercadoFei</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -9,7 +9,7 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>          
           <li><a href="#about">{{ Auth::user()->alias }}</a></li>          
-          <li><a href="#specials">Sugerencias</a></li>
+          <!--<li><a href="#specials">Sugerencias</a></li> Apartado de sugerencias no existe-->
           <li><a href="#events">Foro Productos</a></li>
           <li><a href="#chefs">Emprendedores</a></li>
           <li><a href="{{ route('categories.index') }}">Categorias</a></li>
@@ -209,7 +209,7 @@
               <form action="{{ route('users.destroy', Auth::user()->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Eliminar cuenta</button>
+                <button type="submit" class="btn btn-danger">Dar de Baja</button>
               </form>
             </div>
           </div>
@@ -222,7 +222,7 @@
         <div class="container-fluid">
 
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
+                <a class="btn btn-success" href="{{ route('products.create') }}"> Crear nuevo producto</a>
             </div>
 
             <div class="section-title">

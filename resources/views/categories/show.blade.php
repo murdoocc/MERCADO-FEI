@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Mostrar categoria</h2>
+                <h2> Mostrar categoría</h2>
             </div>
 
             <div class="pull-right">
@@ -20,7 +20,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
 
-                <strong>Categoria principal:</strong>
+                <strong>Categoría principal:</strong>
                 {{ $category->categoria }}
 
             </div>
@@ -28,21 +28,21 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Categoria secundaria 1:</strong>
+                <strong>Categoría secundaria 1:</strong>
                 {{ $category->sub_uno }}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Categoria secundaria 2:</strong>
+                <strong>Categoría secundaria 2:</strong>
                 {{ $category->sub_dos }}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Descripcion:</strong>
+                <strong>Descripción:</strong>
                 {{ $category->descripcion }}
             </div>
         </div>

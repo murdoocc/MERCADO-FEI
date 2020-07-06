@@ -5,13 +5,18 @@
     @php
     ////////////////////////////////////////PANTALLA DE EMPRENDEDOR/////////////////////////////////////////////
         if(Auth::user() != null){
-            echo "<div class='row'>";
-                echo " <div class='col-lg-12 margin-tb'>";
+            echo "<div class='row'  style='margin-bottom:2%'>";
+                echo " <div class='col-lg-8 margin-tb'>";                
                     echo "<div class='pull-left'>";
                         echo "<h2 class='col-xs-12 col-sm-12 col-md-12 text-center'>Bienvenido al FORO</h2>";
-                            echo "</div>";
+                    echo "</div>";
+                    echo "<div class='pull-right'>";                        
+                        echo "<a href='#victorModal' role='button'  class='btn btn-large btn-warning col-xs-12 col-sm-12 col-md-4 text-center' data-toggle='modal'>Crear una propuesta</a>";
+                    echo "</div>";
+                echo "</div>";
+                echo " <div class='col-lg-4 margin-tb'>";                
                     echo "<div class='pull-right'>";
-                        echo "<a href='#victorModal' role='button'  class='btn btn-large btn-warning col-xs-12 col-sm-12 col-md-12' data-toggle='modal'>Crear una propuesta</a>";
+                        echo "<a href=" . route('inicioemprendedor') . " class='btn btn-success col-xs-12 col-sm-12 col-md-8 text-center'>Volver</a>";
                     echo "</div>";
                 echo "</div>";
             echo "</div>";
@@ -60,6 +65,11 @@
                             echo "<h2 class='col-xs-12 col-sm-12 col-md-12 text-center'>Bienvenido al FORO</h2>";
                                 echo "</div>";
                         echo "<div class='pull-right'>";                            
+                        echo "</div>";
+                    echo "</div>";
+                        echo " <div class='col-lg-4 margin-tb'>";                
+                        echo "<div class='pull-right'>";
+                            echo "<a href=" . route('welcome') . " class='btn btn-success col-xs-12 col-sm-12 col-md-8 text-center'>Volver</a>";
                         echo "</div>";
                     echo "</div>";
                 echo "</div>";
@@ -116,7 +126,7 @@
                             <div class='form-group'>
                                 <strong>Emprendedor:</strong>
                                 @if(Auth::user() != null)
-                                    <input type='text' name='alias_emprendedor' value='{{ Auth::user()->alias }}' class='form-control' placeholder='Digita tu alias de emprendedor'>
+                                    <input type='text' name='alias_emprendedor' value='{{ Auth::user()->alias }}' class='form-control' placeholder='Digita tu alias de emprendedor' >
                                 @else
                                 <input type='text' name='alias_emprendedor' class='form-control' placeholder='Digita tu alias de emprendedor'>
                                 @endif
@@ -125,13 +135,13 @@
                         <div class='col-xs-12 col-sm-12 col-md-12'>
                             <div class='form-group'>
                                 <strong>Nombre del producto:</strong>
-                                <input type='text' name='nombre_propuesta' class='form-control' placeholder='Digita el nombre de tu propuesta'>
+                                <input type='text' name='nombre_propuesta' class='form-control' placeholder='Digita el nombre de tu propuesta' required>
                             </div>
                         </div>
                         <div class='col-xs-12 col-sm-12 col-md-12'>
                             <div class='form-group'>
                                 <strong>Detalle:</strong>
-                                <input type='text' name='detalle' class='form-control' placeholder='Describe un poco la propuesta'>
+                                <input type='text' name='detalle' class='form-control' placeholder='Describe un poco la propuesta' required>
                             </div>
                         </div>
                         <div class='col-xs-12 col-sm-12 col-md-12'>

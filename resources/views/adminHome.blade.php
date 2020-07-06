@@ -12,11 +12,18 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
-		function recibir(numero)
+		function recibir(numero, nombre, apellido_p, apellido_m, mail, alias, number, carrera, ubicacion)
 		{
-			var valor = document.getElementById("id"+numero).value;
-			document.getElementById("id2").value=valor;   
-		} 
+			document.f1.id2.value = numero;
+			document.f1.nombre.value = nombre;
+			document.f1.apellido_p.value = apellido_p;
+			document.f1.apellido_m.value = apellido_m;
+			document.f1.email.value = mail;
+			document.f1.alias.value = alias;
+			document.f1.number_tel.value = number;
+			document.f1.carrera.value = carrera;
+			document.f1.ubicacion.value = ubicacion;
+		}
 </script>
 <script>
 		function recibir2(numero)
@@ -279,29 +286,28 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="{{ route('inicioemprendedor') }}">MercadoFei</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!--INCICIO DE UNA NAV BAR-->
+	<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">MercadoFei</a>		
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ route('admin.home') }}">Emprendedores <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.products') }}">Productos</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.categories') }}">Categorias</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.proposes') }}">Propuestas</a>
-      </li>
-    </ul>
-  </div>
-</nav>	
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="{{ route('admin.home') }}">Emprendedores <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('admin.products') }}">Productos</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('admin.categories') }}">Categorias</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('admin.proposes') }}">Propuestas</a>
+			</li>
+			</ul>
+		</div>
+	</nav>
+<!--FIN DE LA NAV BAR-->
 <div class="container-fluid">
 	<div class="table-responsive">
 		<div class="table-wrapper">
@@ -312,7 +318,6 @@ $(document).ready(function(){
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar emprendedor</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
 					</div>
 				</div>
 			</div>
@@ -322,7 +327,6 @@ $(document).ready(function(){
 						<th>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
 							</span>
 						</th>
 						<th>Imagen</th>
@@ -371,11 +375,16 @@ $(document).ready(function(){
 						<td>{{ $user->estatus }}</td>
 						<td>
 						@php
-							$i = $user->id
+							$i = $user->id;
+							$nombre = $user->name;
+							$alias = $user->alias;
+							$number_tel = $user->number_tel;
+							$carrera = $user->carrera;
+							$ubicacion = $user->ubicacion;
 						@endphp
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#editEmployeeModal">
-      						<input type="text" id="id{{$i}}" value="{{ $user->id }}" hidden/>
-      						<input type="button" class="btn btn-warning btn-lg btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}});"/>
+      						<input type="button" class="btn btn-warning btn-lg btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$nombre}}', '{{ $user->apellido_p }}', '{{ $user->apellido_m }}', '{{ $user->email }}', '{{$alias}}', '{{$number_tel}}', '{{$carrera}}', '{{$ubicacion}}');"/>
+							  																										
    						</form>
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
       						<input type="text" id="idid{{$i}}" value="{{ $user->id }}" hidden/>
@@ -385,19 +394,7 @@ $(document).ready(function(){
 					</tr>
 					@endforeach
 				</tbody>
-			</table>
-			<div class="clearfix">
-				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
-			</div>
+			</table>			
 		</div>
 	</div>        
 </div>
@@ -414,7 +411,7 @@ $(document).ready(function(){
 				<div class="modal-body">					
 					<div class="form-group">
 						<label>Nombre</label>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -495,8 +492,8 @@ $(document).ready(function(){
 					</div>															
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-success" value="Add">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
 				</div>
 			</form>
 		</div>
@@ -506,21 +503,22 @@ $(document).ready(function(){
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="put" action="{{ route('admin.update')}}" enctype="multipart/form-data">
+			<form method="POST" name="f1" action="{{ route('admin.update')}}" enctype="multipart/form-data">
+														
 				@csrf
-                @method('PUT')
+                @method('POST')
 				<div class="modal-header">						
 					<h4 class="modal-title">Editar emprendedor</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 				<div class="form-group">
-						<label>Id: <input id="id2" type="text" name="ide" style="border:0; width:15px;"></label>
+						<label>Id: <input type="text" name="id2" style="border:0; width:30px;"></label>
 					</div>					
 					<div class="form-group">
 						<label>Nombre</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="name">
-						@error('name')
+						<input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" required >
+						@error('nombre')
                         <span class="invalid-feedback" role="alert">
                         	<strong>{{ $message }}</strong>
                         </span>
@@ -528,8 +526,8 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Apellido paterno</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_p" value="{{ Auth::user()->apellido_p }}" required autocomplete="name" >
-						@error('name')
+						<input id="apellido_p" type="text" class="form-control @error('apellido_p') is-invalid @enderror" name="apellido_p" required>
+						@error('Aapellido_p')
                         	<span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                         	</span>
@@ -537,8 +535,8 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Apellido materno</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido_m" value="{{ Auth::user()->apellido_m }}" required autocomplete="name">
-						@error('name')
+						<input id="apellido_m" type="text" class="form-control @error('apellido_m') is-invalid @enderror" name="apellido_m"  required>
+						@error('apellido_m')
                         	<span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -546,7 +544,7 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Email</label>
-						<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ Auth::user()->email }}" required autocomplete="email">
+						<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required>
 						@error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -564,8 +562,8 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Alias</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="alias" value="{{ Auth::user()->alias }}" required autocomplete="name" >
-						@error('name')
+						<input id="alias" type="text" class="form-control @error('alias') is-invalid @enderror" name="alias" required>
+						@error('alias')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -573,8 +571,8 @@ $(document).ready(function(){
 					</div>	
 					<div class="form-group">
 						<label>#Telefono</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="number_tel" value="{{ Auth::user()->number_tel }}" required autocomplete="name" >
-						@error('name')
+						<input id="number_tel" type="text" class="form-control @error('number_tel') is-invalid @enderror" name="number_tel" required>
+						@error('number_tel')
                         	<span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -582,8 +580,8 @@ $(document).ready(function(){
 					</div>	
 					<div class="form-group">
 						<label>Carrera</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="carrera" value="{{ Auth::user()->carrera }}" required autocomplete="name">
-                        @error('name')
+						<input id="carrera" type="text" class="form-control @error('carrera') is-invalid @enderror" name="carrera" required>
+                        @error('carrera')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -591,8 +589,8 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Foto</label>
-						<input id="name" type="file" class="form-control @error('name') is-invalid @enderror" name="user_image" value="{{ old('name') }}" required autocomplete="name" multiple>
-                        @error('name')
+						<input id="user_image" type="file" class="form-control @error('user_image') is-invalid @enderror" name="user_image" required autocomplete="name" multiple>
+                        @error('user_image')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -600,8 +598,8 @@ $(document).ready(function(){
 					</div>			
 					<div class="form-group">
 						<label>Ubicación</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="ubicacion" placeholder="SOLO el nombre o numero de salon" required>
-                        @error('name')
+						<input id="ubicacion" type="text" class="form-control @error('ubicacion') is-invalid @enderror" name="ubicacion" placeholder="SOLO el nombre o numero de salon" required>
+                        @error('ubicacion')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -621,8 +619,8 @@ $(document).ready(function(){
 					</div>						
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-info" value="Actualizar">
 				</div>
 			</form>
 		</div>

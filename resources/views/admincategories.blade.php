@@ -12,10 +12,13 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
-		function recibir(numero)
+		function recibir(numero, categoria, sub_uno, sub_dos, descripcion)
 		{
-			var valor = document.getElementById("id"+numero).value;
-			document.getElementById("idc").value=valor;       
+			document.f1.idc.value = numero;
+			document.f1.categoria.value = categoria;
+			document.f1.sub_uno.value = sub_uno;
+			document.f1.sub_dos.value = sub_dos;
+			document.f1.descripcion.value = descripcion;
 		} 
 </script>
 <script>
@@ -279,29 +282,26 @@ $(document).ready(function(){
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="{{ route('inicioemprendedor') }}">MercadoFei</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand" href="#">MercadoFei</a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ route('admin.categories') }}">Categorias <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.proposes') }}">Propuestas</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.home') }}">Emprendedores</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.products') }}">Productos</a>
-      </li>
-    </ul>
-  </div>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+		<li class="nav-item">
+			<a class="nav-link" href="{{ route('admin.home') }}">Emprendedores </a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="{{ route('admin.products') }}">Productos</a>
+		</li>
+		<li class="nav-item active">
+			<a class="nav-link" href="{{ route('admin.categories') }}">Categorias <span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="{{ route('admin.proposes') }}">Propuestas</a>
+		</li>
+		</ul>
+	</div>
 </nav>	
-<div class="container-xl">
+<div class="container-fluid">
 	<div class="table-responsive">
 		<div class="table-wrapper">
 			<div class="table-title">
@@ -310,8 +310,7 @@ $(document).ready(function(){
 						<h2>Administrar <b>Categorias de productos</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar categoria</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar categoria</span></a>						
 					</div>
 				</div>
 			</div>
@@ -321,7 +320,6 @@ $(document).ready(function(){
 						<th>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
 							</span>
 						</th>
 						<th>Id</th>
@@ -333,7 +331,7 @@ $(document).ready(function(){
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($categories as $categorie)
+					@foreach ($categories as $category)
 					<tr>
 						<td>
 							<span class="custom-checkbox">
@@ -341,21 +339,24 @@ $(document).ready(function(){
 								<label for="checkbox1"></label>
 							</span>
 						</td>
-						<td id="{{ $categorie->id }}">{{ $categorie->id }}</td>	
-						<td>{{ $categorie->categoria }}</td>
-						<td>{{ $categorie->sub_uno }}</td>
-						<td>{{ $categorie->sub_dos }}</td>
-						<td>{{ $categorie->descripcion }}</td>
+						<td id="{{ $category->id }}">{{ $category->id }}</td>	
+						<td>{{ $category->categoria }}</td>
+						<td>{{ $category->sub_uno }}</td>
+						<td>{{ $category->sub_dos }}</td>
+						<td>{{ $category->descripcion }}</td>
 						<td>
 						@php
-							$i = $categorie->id
+							$i = $category->id;
+							$categoria = $category->categoria;
+							$sub_uno = $category->sub_uno;
+							$sub_dos = $category->sub_dos;
+							$descripcion = $category->descripcion;
 						@endphp
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#editEmployeeModal">
-      						<input type="number" id="id{{$i}}" value="{{ $categorie->id }}" hidden/>
-      						<input type="button" class="btn btn-warning" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}});"/>
+      						<input type="button" class="btn btn-warning" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$categoria}}', '{{$sub_uno}}', '{{$sub_dos}}', '{{$descripcion}}');"/>
    						</form>
 						<form id="formulario2" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
-      						<input type="number" id="idid{{$i}}" value="{{ $categorie->id }}" hidden/>
+      						<input type="number" id="idid{{$i}}" value="{{ $category->id }}" hidden/>
       						<input type="button" class="btn btn-danger" id="button2" name="enviar2" value="Eliminar" onclick="recibir2({{$i}});"/>
    						</form>				
 						</td>
@@ -363,18 +364,6 @@ $(document).ready(function(){
 					@endforeach
 				</tbody>
 			</table>
-			<div class="clearfix">
-				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
-			</div>
 		</div>
 	</div>        
 </div>
@@ -382,7 +371,7 @@ $(document).ready(function(){
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="POST" action="{{ route('admin.createcategorie') }}">
+			<form method="POST" action="{{ route('admin.createcategory') }}">
 			@csrf
 				<div class="modal-header">						
 					<h4 class="modal-title">Agregar categoria</h4>
@@ -427,8 +416,8 @@ $(document).ready(function(){
 					</div>	
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-success" value="Add">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
 				</div>
 			</form>
 		</div>
@@ -438,7 +427,7 @@ $(document).ready(function(){
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="post" action="{{ route('admin.updatecategorie') }}" enctype="multipart/form-data">
+			<form method="post" name="f1" action="{{ route('admin.updatecategory') }}" enctype="multipart/form-data">
 				@csrf
                 @method('POST')
 				<div class="modal-header">						
@@ -488,8 +477,8 @@ $(document).ready(function(){
 					</div>	
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-info" value="Actualizar">
 				</div>
 			</form>
 		</div>
@@ -499,7 +488,7 @@ $(document).ready(function(){
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="{{ route('admin.deletecategorie')}}" method="POST">
+			<form action="{{ route('admin.deletecategory')}}" method="POST">
 			@csrf
             @method('DELETE')
 				<div class="modal-header">						
@@ -507,7 +496,7 @@ $(document).ready(function(){
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
-					<p>¿Estas seguro de querer eliminar al emprendedor con el id <input id="idc2" type="text" name="ide" style="border:0; width:15px;">?</p>
+					<p>¿Estas seguro de querer eliminar la categoria con el id <input id="idc2" type="text" name="ide" style="border:0; width:15px;">?</p>
 					<p class="text-warning"><small>Esta acción no podra ser revertida.</small></p>
 				</div>
 				<div class="modal-footer">

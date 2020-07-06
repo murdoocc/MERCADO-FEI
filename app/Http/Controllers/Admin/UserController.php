@@ -58,7 +58,7 @@ class UserController extends Controller
     public function update2(Request $request)
     {
         $request->validate([
-            'name' => 'required', 'string', 'max:255',
+            'nombre' => 'required', 'string', 'max:255',
             'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
             'password' => 'required', 'string', 'min:8', 'confirmed',
             'user_image' => 'required|image',
@@ -67,10 +67,10 @@ class UserController extends Controller
         $image_file = $request['user_image'];
         $image = Image::make($image_file);
         Response::make($image->encode('jpeg'));
-        $id = $request->ide;
+        $id = $request->id2;
         
         $user = User::find($id);
-        $user->name = $request->name;
+        $user->name = $request->nombre;
         $user->apellido_p = $request->apellido_p;
         $user->apellido_m = $request->apellido_m;
         $user->email = $request->email;

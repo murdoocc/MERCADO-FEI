@@ -12,10 +12,11 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
-		function recibir(numero)
+		function recibir(numero, nombre_propuesta, detalle)
 		{
-			var valor = document.getElementById("id"+numero).value;
-			document.getElementById("idp").value=valor;     
+			document.f1.idp.value = numero;
+			document.f1.nombre_propuesta.value = nombre_propuesta;
+			document.f1.detalle.value = detalle;
 		} 
 </script>
 <script>
@@ -286,21 +287,21 @@ $(document).ready(function(){
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ route('admin.proposes') }}">Propuestas <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.products') }}">Productos</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.home') }}">Emprendedores</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.categories') }}">Categorias</a>
-      </li>
-    </ul>
-  </div>
+			<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('admin.home') }}">Emprendedores </a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('admin.products') }}">Productos</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('admin.categories') }}">Categorias</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link" href="{{ route('admin.proposals') }}">Propuestas <span class="sr-only">(current)</span></a>
+			</li>
+			</ul>
+		</div>
 </nav>	
 <div class="container-fluid">
 	<div class="table-responsive">
@@ -312,7 +313,6 @@ $(document).ready(function(){
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar propuesta</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
 					</div>
 				</div>
 			</div>
@@ -322,7 +322,6 @@ $(document).ready(function(){
 						<th>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
 							</span>
 						</th>
 						<th>Id</th>
@@ -335,7 +334,7 @@ $(document).ready(function(){
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($proposes as $propose)
+					@foreach ($proposals as $propose)
 					<tr>
 						<td>
 							<span class="custom-checkbox">
@@ -351,11 +350,12 @@ $(document).ready(function(){
 						<td>{{ $propose->votos }}</td>
 						<td>
 						@php
-							$i = $propose->id
+							$i = $propose->id;
+							$nombre_propuesta = $propose->nombre_propuesta;
+							$detalle = $propose->detalle;
 						@endphp
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#editEmployeeModal">
-      						<input type="text" id="id{{$i}}" value="{{ $propose->id }}" hidden/>
-      						<input type="button" class="btn btn-warning btn-lg btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}});"/>
+      						<input type="button" class="btn btn-warning btn-lg btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$nombre_propuesta}}', '{{$detalle}}');"/>
    						</form>
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
       						<input type="text" id="idid{{$i}}" value="{{ $propose->id }}" hidden/>
@@ -366,22 +366,10 @@ $(document).ready(function(){
 					@endforeach
 				</tbody>
 			</table>
-			<div class="clearfix">
-				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
-			</div>
 		</div>
 	</div>        
 </div>
-<!-- Edit Modal HTML -->
+<!-- ADD Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -393,8 +381,15 @@ $(document).ready(function(){
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Id del emprendedor</label>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="alias_emprendedor" value="{{ old('name') }}" required autocomplete="name" autofocus>
+						<label>Emprendedor</label>
+                        <select id='alias_emprendedor' name='alias_emprendedor' class='form-control'>";
+							<option selected>Selecciona a un emprendedor</option>                        
+							@foreach ($users as $user)
+								@if($user->is_admin==0){								
+									<option>{{ $user->alias }}</option>
+								@endif
+							@endforeach
+						</select>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -421,8 +416,13 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Categoria</label>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="categoria" value="{{ old('name') }}" required autocomplete="name" autofocus>
-						@error('name')
+						<select id='category' name='categoria' class='form-control'>";
+							<option selected>Selecciona una categoria</option>                        
+							@foreach ($categories as $category)                            
+								<option>{{ $category->id }} {{ $category->categoria }} {{ $category->sub_uno }} {{ $category->sub_dos }}</option>
+							@endforeach
+						</select>
+						@error('category')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -430,8 +430,8 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-success" value="Add">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
 				</div>
 			</form>
 		</div>
@@ -441,7 +441,7 @@ $(document).ready(function(){
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="post" action="{{ route('admin.updatepropose')}}" enctype="multipart/form-data">
+			<form method="post" name="f1" action="{{ route('admin.updatepropose')}}" enctype="multipart/form-data">
 				@csrf
                 @method('POST')
 				<div class="modal-header">						
@@ -453,12 +453,19 @@ $(document).ready(function(){
 						<label>Id: <input id="idp" type="text" name="idp" style="border:0; width:15px;"></label>
 					</div>			
 					<div class="form-group">
-						<label>Alias del emprendedor</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="alias_emprendedor" required autocomplete="name">
+						<label>Emprendedor</label>
+                        <select id='alias_emprendedor' name='alias_emprendedor' class='form-control'>";
+							<option selected>Selecciona a un emprendedor</option>                        
+							@foreach ($users as $user)
+								@if($user->is_admin==0){								
+									<option>{{ $user->alias }}</option>
+								@endif
+							@endforeach
+						</select>
 						@error('name')
-                        <span class="invalid-feedback" role="alert">
-                        	<strong>{{ $message }}</strong>
-                        </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
 					</div>
 					<div class="form-group">
@@ -481,17 +488,22 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Categoria</label>
-						<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="categoria" required autocomplete="name">
-						@error('name')
-                        <span class="invalid-feedback" role="alert">
-                        	<strong>{{ $message }}</strong>
-                        </span>
+						<select id='category' name='categoria' class='form-control'>";
+							<option selected>Selecciona una categoria</option>                        
+							@foreach ($categories as $category)                            
+								<option>{{ $category->id }} {{ $category->categoria }} {{ $category->sub_uno }} {{ $category->sub_dos }}</option>
+							@endforeach
+						</select>
+						@error('category')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
 					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-info" value="Actualizar">
 				</div>
 			</form>
 		</div>

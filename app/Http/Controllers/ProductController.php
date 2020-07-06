@@ -182,7 +182,7 @@ class ProductController extends Controller
 
         
         
-        $cate = $request->input('id_categoria');
+        $cate = $request->input('category');
         $tok = strtok($cate, " ");
 
         $request->validate([
@@ -210,6 +210,7 @@ class ProductController extends Controller
         return redirect()->route('admin.products')
                         ->with('success','Product created successfully');
     }
+
     public function adminupdate(Request $request)
     {        
         $cate = $request->id_categoria;

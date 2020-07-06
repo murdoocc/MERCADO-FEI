@@ -11,14 +11,14 @@ class CreateUsersSeeder extends Seeder
      */
     public function run()
     {
-        $user = [
+        /*$user = [
             [
                'name'=>'Admin',
-               'email'=>'lpanonymous0101@gmail.com',
+               'email'=>'anonymous0101@gmail.com',
                 'is_admin'=>'1',
                'password'=> bcrypt('MrRobot'),
             ],
-        ];
+        ];*/
   
         foreach ($user as $key => $value) {
             User::create($value);

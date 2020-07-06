@@ -19,7 +19,7 @@ class HomeController2 extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
         //$products = (new ProductController)->index();
     }
 

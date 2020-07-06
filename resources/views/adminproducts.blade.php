@@ -12,11 +12,16 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
-		function recibir(numero)
+		function recibir(numero, nombre, precio, detalle, existencia, id_emprendedor, id_categoria)
 		{
-			var valor = document.getElementById("id"+numero).value;
-			document.getElementById("idp").value=valor;  
-		} 
+			document.f1.idp.value = numero;
+			document.f1.nombre.value = nombre;
+			document.f1.precio.value = precio;
+			document.f1.detalle.value = detalle;
+			document.f1.existencia.value = existencia;
+			document.f1.id_emprendedor.value = id_emprendedor;
+			document.f1.id_categoria.value = id_categoria;
+		}
 </script>
 <script>
 		function recibir2(numero)
@@ -279,27 +284,24 @@ $(document).ready(function(){
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="{{ route('inicioemprendedor') }}">MercadoFei</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand" href="#">MercadoFei</a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ route('admin.products') }}">Productos <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.home') }}">Emprendedores</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.categories') }}">Categorias</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.proposes') }}">Propuestas</a>
-      </li>
-    </ul>
-  </div>
+  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+		<li class="nav-item">
+			<a class="nav-link" href="{{ route('admin.home') }}">Emprendedores</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link active" href="{{ route('admin.products') }}">Productos <span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="{{ route('admin.categories') }}">Categorias</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="{{ route('admin.proposes') }}">Propuestas</a>
+		</li>
+		</ul>
+	</div>
 </nav>	
 <div class="container-fluid">
 	<div class="table-responsive">
@@ -311,7 +313,7 @@ $(document).ready(function(){
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar producto</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
+					
 					</div>
 				</div>
 			</div>
@@ -320,8 +322,6 @@ $(document).ready(function(){
 					<tr>
 						<th>
 							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
 							</span>
 						</th>
 						<th>Imagen</th>
@@ -352,7 +352,7 @@ $(document).ready(function(){
 								echo '<img src="data:image/jpg;base64,' . base64_encode($data) . '" width="75" height="75" style= "border-radius: 50%;"/>';   
 							@endphp  
 						</td>
-						<td id="{{ $product->id }}">{{ $product->id }}</td>	
+						<td id="{{ $product->id }}">{{ $product->id }}</td>
 						<td>{{ $product->nombre }}</td>
 						<td>{{ $product->precio }}</td>
 						<td>{{ $product->detalle }}</td>
@@ -360,11 +360,16 @@ $(document).ready(function(){
 						<td>{{ $product->existencia }}</td>
 						<td>
 						@php
-							$i = $product->id
+							$i = $product->id;							
+							$id_emprendedor = $product->user_id;
+							$id_categoria = $product->category_id;
+							$nombre = $product->nombre;
+							$precio = $product->precio;
+							$detalle = $product->detalle;
+							$existencia = $product->existencia;
 						@endphp
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#editEmployeeModal">
-      						<input type="text" id="id{{$i}}" value="{{ $product->id }}" hidden/>
-      						<input type="button" class="btn btn-warning btn-lg btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}});"/>
+      						<input type="button" class="btn btn-warning btn-lg btn-block" id="button1" name="enviar" value="Editar" onclick="recibir({{$i}}, '{{$nombre}}',  {{$precio}}, '{{$detalle}}', {{$existencia}}, {{$id_emprendedor}}, {{$id_categoria}});"/>
    						</form>
 						<form id="formulario" method="Post" data-toggle="modal" data-target="#deleteEmployeeModal">
       						<input type="text" id="idid{{$i}}" value="{{ $product->id }}" hidden/>
@@ -375,22 +380,10 @@ $(document).ready(function(){
 					@endforeach
 				</tbody>
 			</table>
-			<div class="clearfix">
-				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
-			</div>
 		</div>
 	</div>        
 </div>
-<!-- Edit Modal HTML -->
+<!-- ADD Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -412,7 +405,7 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Precio</label>
-                        <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="precio" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="precio" value="{{ old('name') }}" required autocomplete="name" autofocus>
 						@error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -447,9 +440,13 @@ $(document).ready(function(){
                         @enderror
 					</div>
 					<div class="form-group">
-						<label>Id de la categoria perteneciente</label>
-                        <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="id_categoria" value="{{ old('name') }}" required autocomplete="name" autofocus>
-						@error('name')
+						<select id='category' name='category' class='form-control'>";
+							<option selected>Selecciona una categoria</option>                        
+							@foreach ($categories as $category)                            
+								<option>{{ $category->id }} {{ $category->categoria }} {{ $category->sub_uno }} {{ $category->sub_dos }}</option>
+							@endforeach
+						</select>
+						@error('category')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -470,18 +467,18 @@ $(document).ready(function(){
 
                             <div class="form-check form-check-inline">
                                 <input type="radio" class="form-check-input" id="materialInline1" name="estado" value="1">
-                                <label class="form-check-label" for="materialInline1">Activo</label>
+                                <label class="form-check-label" for="materialInline1">Disponible</label>
                                 </div>
 
                                 <!-- Material inline 2 -->
                                 <div class="form-check form-check-inline">
                                 <input type="radio" class="form-check-input" id="materialInline2" name="estado" value="0">
-                                <label class="form-check-label" for="materialInline2">Inactivo</label>
+                                <label class="form-check-label" for="materialInline2">Agotado</label>
                             </div>
                         </div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-success" value="Add">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
 				</div>
 			</form>
 		</div>
@@ -491,7 +488,7 @@ $(document).ready(function(){
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="post" action="{{ route('admin.updateproduct')}}" enctype="multipart/form-data">
+			<form method="post" name="f1" action="{{ route('admin.updateproduct')}}" enctype="multipart/form-data">
 				@csrf
                 @method('POST')
 				<div class="modal-header">						
@@ -500,7 +497,7 @@ $(document).ready(function(){
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label>Id: <input id="idp" type="text" name="idp" style="border:0; width:15px;"></label>
+						<label>Id: <input id="idp" type="text" name="idp" style="border:0; width:30px;"></label>
 					</div>	
 					<div class="form-group">
 						<label>Nombre</label>
@@ -582,7 +579,7 @@ $(document).ready(function(){
                         </div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
+					<input type="submit" class="btn btn-info" value="Actualizar">
 				</div>
 			</form>
 		</div>
@@ -604,8 +601,8 @@ $(document).ready(function(){
 					<p class="text-warning"><small>Esta acción no podra ser revertida.</small></p>
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-danger" value="Delete">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-danger" value="Eliminar">
 				</div>
 			</form>
 		</div>

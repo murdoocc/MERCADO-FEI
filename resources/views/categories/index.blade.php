@@ -8,7 +8,7 @@
         <div class="pull-left">
             <a class="btn btn-primary" href="{{ route('inicioemprendedor') }}"> Volver</a>
         </div>
-        <div class="pull-center">
+        <div style="margin-left:35%">
             <h2>Categorias existentes</h2>
         </div>
         <div class="pull-right">

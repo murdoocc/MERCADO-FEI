@@ -41,19 +41,19 @@ Route::get('admin/products', 'HomeController@adminproducts')->name('admin.produc
 
 Route::get('admin/categories', 'HomeController@admincategories')->name('admin.categories')->middleware('is_admin');
 
-Route::get('admin/proposes', 'HomeController@adminproposes')->name('admin.proposes')->middleware('is_admin');
+Route::get('admin/proposals', 'HomeController@adminproposals')->name('admin.proposals')->middleware('is_admin');
 
-Route::put('update','UserController@update2')->name('admin.update');
+Route::post('update','UserController@update2')->name('admin.update');
 
 Route::post('create','UserController@create')->name('admin.create');
 
 Route::delete('destroy','UserController@destroy')->name('admin.destroy');
 
-Route::post('createcategorie','CategoryController@storeadmin')->name('admin.createcategorie');
+Route::post('createcategory','CategoryController@storeadmin')->name('admin.createcategory');
 
-Route::post('updatecategorie','CategoryController@adminupdate')->name('admin.updatecategorie');
+Route::post('updatecategory','CategoryController@adminupdate')->name('admin.updatecategory');
 
-Route::delete('deletecategorie','CategoryController@admindestroy')->name('admin.deletecategorie');
+Route::delete('deletecategory','CategoryController@admindestroy')->name('admin.deletecategory');
 
 Route::post('createproduct','ProductController@adminstore')->name('admin.createproduct');
 
