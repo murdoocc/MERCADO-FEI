@@ -16,7 +16,7 @@
                 </div>
                  <div class='col-lg-4 margin-tb'>                
                     <div class='pull-right'>
-                        <a href=" . route('inicioemprendedor') . " class='btn btn-success col-xs-12 col-sm-12 col-md-8 text-center'>Volver</a>
+                        <a href=" {{ route('inicioemprendedor') }}" class='btn btn-success col-xs-12 col-sm-12 col-md-8 text-center'>Volver</a>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                         </div>
                          <div class='col-lg-4 margin-tb'>                
                         <div class='pull-right'>
-                            <a href=" . route('welcome') . " class='btn btn-success col-xs-12 col-sm-12 col-md-8 text-center'>Volver</a>
+                            <a href=" {{ route('welcome') }} " class='btn btn-success col-xs-12 col-sm-12 col-md-8 text-center'>Volver</a>
                         </div>
                     </div>
                     </div>                      
@@ -74,11 +74,11 @@
                         
                 </div>
             
-                if($message = Session::get('success')){
+                @if($message = Session::get('success'))
                     <div class='alert alert-success'>
-                        <p> $message </p>
+                        <p> {{ $message }} </p>
                     </div>
-                }
+                @endif
             
                 <table class='table table-bordered'>
                     <tr>
@@ -87,22 +87,24 @@
                         <th>Detalle</th>
                         <th width='280px'>Elige tu propuesta</th>
                     </tr>
-                    foreach($proposals as $proposal){
+                    @foreach($proposals as $proposal)
                     <tr>
-                        <td>" . $i++ . "</td>
-                        <td> $proposal->nombre_propuesta </td>
-                        <td> $proposal->detalle </td>
+                        <td> {{ $i++ }}</td>
+                        <td> {{ $proposal->nombre_propuesta }} </td>
+                        <td> {{ $proposal->detalle }} </td>
                     <td>
-                            <form action=" . route('proposals.edit',$proposal->id) . " method='PATCH'>
-                            $unVoto = $proposal->votos;
-                            $unVoto += 1;
+                            <form action= " {{ route('proposals.edit',$proposal->id) }} " method='PATCH'>
+                            @php
+                                $unVoto = $proposal->votos;
+                                $unVoto += 1;
+                            @endphp
                             <input id='votos' type='hidden' name='votos' value=" . $unVoto . "autofocus> 
                 
                             <button type='submit' class='btn btn-warning'>Votar</button>
                         </form>
                     </td>
                 </tr>
-                    }
+                    @endforeach
             </table>
         @endif
     
