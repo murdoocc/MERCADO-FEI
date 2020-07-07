@@ -99,7 +99,7 @@ class ProposalController extends Controller
         $proposal->update(['votos' => $votos]); 
       
         return redirect()->route('proposals.index')
-                        ->with('success','Propuesta actualizada!');
+                        ->with('success','Gracias por votar!');
     }
 
     /**
@@ -120,7 +120,7 @@ class ProposalController extends Controller
      * @param  \App\Proposal  $proposal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $Request)
+    public function destroy(Request $request)
     {
         
         $propose = Proposal::find($request->idp);
@@ -130,7 +130,7 @@ class ProposalController extends Controller
 
     }
 
-    public function adminstore(Request $Request)
+    public function adminstore(Request $request)
     {
         $request->validate([
             'alias_emprendedor' => 'required',

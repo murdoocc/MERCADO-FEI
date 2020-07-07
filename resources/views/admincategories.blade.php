@@ -506,8 +506,8 @@ $(document).ready(function(){
 					<p class="text-warning"><small>Esta acción no podra ser revertida.</small></p>
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-danger" value="Delete">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-danger" value="Eliminar">
 				</div>
 			</form>
 		</div>
